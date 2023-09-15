@@ -1,0 +1,170 @@
+body,
+h2,
+h3,
+h4,
+h5,
+#text,
+#text2,
+#text3,
+#text4,
+#hidden {
+  font-family: 'Jetbrains Mono', monospace;
+}
+
+body {
+  background-color: #1e1e24;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 36px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.container3 {
+  margin: 2rem 4rem;
+  padding: 2rem 4rem;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.neticents {
+  font-weight: bold;
+  font-size: 48px;
+  margin-top: -100px;
+  color: #f7cb15;
+}
+
+#text {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.btn-custom {
+  background-color: #ffffff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #f7cb15;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.btn-custom:focus {
+  outline: none;
+}
+
+.navbar {
+  background: #f7cb15;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+}
+
+.navbar a.nav-link {
+  font-size: 17px;
+  margin: 0 -17px;
+  padding: 3px 5px;
+  color: black !important;
+  font-weight: 630px;
+}
+
+.navbar-toggler {
+  color: black;
+}
+
+.navbar-toggler-icon {
+  background-color: black;
+}
+
+.navbar a.nav-link.active {
+  color: #ff3c38;
+}
+
+.nav-item {
+  padding-right: 50px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 30px;
+  color: #f7cb15;
+  margin-top: 600px;
+  margin-bottom: 1.5rem;
+}
+
+.slabs li {
+  font-weight: 300;
+  font-size: 22px;
+  color: #000000;
+}
+
+#text2,
+#text3,
+#text4 {
+  font-weight: 300;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+.container3 ul li::before {
+  content: '\2022';
+  color: #020074;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  margin-right: 0.5em;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 30px;
+  color: #f7cb15;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+h5 {
+  font-weight: lighter;
+  font-size: 15px;
+  color: #f7cb15;
+}
+
+#main-footer {
+  background: #f7cb15;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  height: 230px;
+}
+
+footer {
+  background: #f7cb15;
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.container-box {
+  background: #ffffff;
+  box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: max-content;
+  padding: 1rem;
+}

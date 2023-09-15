@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neti-Cents</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-f7cb15"
+      aria-label="Fifth navbar example"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/images/logo.png" alt="logo" width="50" height="50" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsExample05"
+          aria-controls="navbarsExample05"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample05">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#about"
+                >About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#income-tax">Income Tax</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#mp2-dividends">MP2 Dividends</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="min-vh-100 d-flex align-items-center text-center"
+    >
+      <div class="container mb-4">
+        <h1 class="text-uppercase fw-bolder display-1 neticents">
+          N E T I - C E N T S
+        </h1>
+
+        <h5 class="text-white mt-4 mb-5">
+          Income Tax • Pag-Ibig Dividends • Financial Calculators
+        </h5>
+        <div>
+          <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
+          <a href="#" class="btn btn-custom ms-2">LEARN MORE</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Income Tax Calculator Container -->
+    <section id="income-tax">
+      <div class="container">
+        <h2>Income Tax Calculator</h2>
+        <p id="text">Philippine tax rate per RA 10963</p>
+        <div class="row">
+          <div class="col">
+            <div class="btn-1">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Amount Here"
+                aria-label="Enter Amount Here"
+              />
+            </div>
+          </div>
+          <div class="col">
+            <div class="btn-2">
+              <select
+                class="form-select form-select-lg mb-3"
+                aria-label=".form-select-lg example"
+              >
+                <option selected>Monthly</option>
+                <option value="1">Annual</option>
+                <option value="2">Bi-Weekly</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="btn-3">
+              <button id="calculate">Calculate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MP2 Dividends Calculator -->
+    <section id="mp2-dividends">
+      <div class="container">
+        <h2>MP2 Dividends</h2>
+      </div>
+    </section>
+
+    <!-- Relevant Data Section -->
+    <section id="relevant-data">
+      <div class="container-fluid">
+        <h2>Relevant Data</h2>
+        <p id="text4">
+          Income tax reference: RA 10963 - Section 5<br />SSS contribution:
+          Circular 2020-033<br />GSIS contribution: RA 8291 - Section 11<br />Pagibig
+          contribution: RA 9679 - Rule VI - Section 1<br />PhilHealth
+          contribution: PhilHealth contribution table
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div id="colophon" class="wrapper clearfix">
+        <p id="copyright">© 2023 nathanielseth</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
