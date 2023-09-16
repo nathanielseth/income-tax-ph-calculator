@@ -15,10 +15,14 @@ body {
   background-color: #1e1e24;
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
   line-height: 36px;
   margin: 0;
   color: #ffffff;
+}
+
+section {
+  position: relative;
+  padding: 100px 13vw;
 }
 
 .container3 {
@@ -29,10 +33,11 @@ body {
 }
 
 .neticents {
+  font-family: 'Inter';
   font-weight: bold;
-  font-size: 48px;
-  margin-top: -100px;
-  color: #f7cb15;
+  font-size: 90px;
+  margin-top: -200;
+  color: #212121;
 }
 
 #text {
@@ -45,8 +50,8 @@ body {
 }
 
 .btn-custom {
-  background-color: #eff2f1;
-  color: #000;
+  background-color: #1e1e24;
+  color: #ffffff;
   border: none;
   padding: 10px 20px;
   text-decoration: none;
@@ -54,7 +59,7 @@ body {
 }
 
 .btn-custom:hover {
-  background-color: #f7cb15;
+  background-color: #ffffff;
   color: #000;
   transform: scale(1.05);
 }
@@ -65,18 +70,18 @@ body {
 
 .btn-learn-more {
   background-color: transparent;
-  border: 1px solid #eff2f1;
-  color: #eff2f1;
+  border: 1.5px solid #212121;
+  color: #212121;
 }
 
 .btn-learn-more:hover {
   background-color: transparent;
-  color: #f7cb15;
-  border: 1px solid #f7cb15;
+  color: #ffffff;
+  border: 1px solid #ffffff;
 }
 
 .navbar {
-  background: #f7cb15;
+  background: #1e1e24;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -84,11 +89,17 @@ body {
 }
 
 .navbar a.nav-link {
-  font-size: 17px;
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 100;
   margin: 0 -17px;
   padding: 3px 5px;
-  color: black !important;
-  font-weight: 630px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar a.nav-link:hover {
+  color: #ffffff !important;
 }
 
 .navbar-toggler {
@@ -100,7 +111,7 @@ body {
 }
 
 .navbar a.nav-link.active {
-  color: #ff3c38;
+  color: gray;
 }
 
 .nav-item {
@@ -193,7 +204,14 @@ footer {
   text-align: right;
 }
 
-/* Add this CSS to your stylesheet */
 .tableText {
-  font-size: 16px; /* You can adjust the font size as needed */
+  font-size: 16px;
+}
+
+.yellow {
+  background: #f7cb15;
+}
+
+.inter {
+  font-family: 'Inter';
 }

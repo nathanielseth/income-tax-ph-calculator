@@ -1,89 +1,58 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neti-Cents</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="src/styles.css" />
-  </head>
-  <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
     <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-f7cb15"
-      aria-label="Fifth navbar example"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="/images/logo.png" alt="logo" width="50" height="50" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample05"
-          aria-controls="navbarsExample05"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarsExample05">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#about"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#income-tax" data-bs-offset="0"
-                >Income Tax</a
-              >
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link active" href="#mp2-dividends">MP2 Dividends</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-f7cb15" aria-label="Fifth navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand text-yellow inter" href="#">NETI-CENTS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
+                aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExample05">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#about">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#income-tax" data-bs-offset="0">INCOME TAX</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#mp2-dividends">PAG-IBIG MP2</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- About Section -->
-    <section
-      id="about"
-      class="min-vh-100 d-flex align-items-center text-center"
-    >
-      <div class="container mb-4">
-        <h1
-          class="text-uppercase fw-bolder display-1 neticents"
-          style="margin-top: -50px"
-        >
-          N E T I - C E N T S
-        </h1>
-
-        <h5 class="text-white mt-4 mb-5">
-          Income Tax • Pag-Ibig Dividends • Financial Calculators
-        </h5>
-        <div>
-          <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
-          <a href="#" class="btn btn-custom btn-learn-more ms-2">LEARN MORE</a>
+    <section id="about" class="min-vh-100 d-flex align-items-center text-center yellow">
+        <div class="container mb-5">
+            <h1 class="text-uppercase fw-bolder display-1 neticents mt-0">NETI-CENTS</h1>
+            <p class="text-black mt-1 mb-4">
+          Calculator for PH income tax & MP2 investment
+        </p>
+            <div>
+                <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
+                <a href="#" class="btn btn-custom btn-learn-more ms-2">LEARN MORE</a>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Income Tax Calculator Container -->
-    <section id="income-tax" class="py-5">
+    <section id="income-tax" class="py-4">
       <div class="container">
-        <h2 class="text-center mt-0">Salary Income Tax Calculator</h2>
+        <h2 class="text-center mt-2 inter">Salary Income Tax Calculator</h2>
         <h5 class="text-center mt-0 text-gray">
           Philippine tax rate per RA 10963
         </h5>
@@ -270,17 +239,17 @@
     </section>
 
     <!-- MP2 Dividends Calculator -->
-    <section id="mp2-dividends">
+    <section id="mp2-dividends" class="py-1 yellow">
       <div class="container">
-        <h2>MP2 Dividends</h2>
+        <h2 class="text-center mt-5 text-black inter">Pag-Ibig MP2 Calculator</h2>
       </div>
     </section>
 
     <!-- Relevant Data Section -->
-    <section id="relevant-data">
+    <section id="relevant-data class="py-1 white">
       <div class="container-fluid">
-        <h2>Relevant Data</h2>
-        <p id="text4">
+        <h2 class="text-center mt-5 inter">Relevant Data</h2>
+        <p class="text-center">
           Income tax reference: RA 10963 - Section 5<br />SSS contribution:
           Circular 2020-033<br />GSIS contribution: RA 8291 - Section 11<br />Pagibig
           contribution: RA 9679 - Rule VI - Section 1<br />PhilHealth
@@ -291,8 +260,8 @@
 
     <!-- Footer -->
     <footer>
-      <div id="colophon" class="wrapper clearfix">
-        <p id="copyright">© 2023 nathanielseth</p>
+      <div>
+        <p>nathanielseth.dev</p>
       </div>
     </footer>
 
