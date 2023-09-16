@@ -8,14 +8,12 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <!-- Navbar -->
@@ -209,19 +207,21 @@
           <table class="table table-bordered table-dark">
             <tbody>
               <tr>
-                <td>Gross Income</td>
-                <td class="tableAmount">₱<span id="grossIncome">0.00</span></td>
+                <td class="tableText">Gross Income</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="grossIncome">0.00</span>
+                </td>
               </tr>
               <tr>
-                <td>Allowance</td>
-                <td class="tableAmount">
+                <td class="tableText">Allowance</td>
+                <td class="tableAmount tableText">
                   ₱<span id="allowanceAmount">0.00</span>
                 </td>
               </tr>
               <tr></tr>
               <tr>
-                <td>Withholding Tax</td>
-                <td class="tableAmount">
+                <td class="tableText">Withholding Tax</td>
+                <td class="tableAmount tableText">
                   ₱<span id="allowanceAmount">0.00</span>
                 </td>
               </tr>
@@ -230,26 +230,26 @@
                 <td><span></span></td>
               </tr>
               <tr>
-                <td>Contributions</td>
-                <td><span></span></td>
-              </tr>
-              <tr>
-                <td>SSS</td>
-                <td class="tableAmount">₱<span id="sssAmount">0.00</span></td>
-              </tr>
-              <tr>
-                <td>Mandatory Provident Fund</td>
-                <td class="tableAmount">₱<span id="mpfAmount">0.00</span></td>
-              </tr>
-              <tr>
-                <td>PhilHealth</td>
-                <td class="tableAmount">
-                  ₱<span id="philhealthAmount">0.00</span>
+                <td class="tableText">SSS Contribution</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="sssAmount">0.00</span>
                 </td>
               </tr>
               <tr>
-                <td>Pag-ibig</td>
-                <td class="tableAmount">
+                <td class="tableText">Mandatory Provident Fund</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="mpfAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">PhilHealth Contribution</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="philhealthAmount tableText">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">Pag-ibig Contribution</td>
+                <td class="tableAmount tableText">
                   ₱<span id="pagibigAmount">0.00</span>
                 </td>
               </tr>
@@ -258,8 +258,10 @@
                 <td><span></span></td>
               </tr>
               <tr>
-                <td>Monthly Take Home Pay</td>
-                <td class="tableAmount">₱<span id="takeHomePay">0.00</span></td>
+                <td class="tableText">Monthly Take Home Pay</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="takeHomePay">0.00</span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -295,6 +297,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
-    <script src="./script.js"></script>
+    <script src="src/script.js"></script>
   </body>
 </html>

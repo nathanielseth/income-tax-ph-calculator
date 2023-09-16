@@ -154,7 +154,7 @@ h3 {
 
 h5 {
   font-weight: lighter;
-  font-size: 16px;
+  font-size: 14px;
   color: #f7cb15;
 }
 
@@ -191,4 +191,9 @@ footer {
 
 .tableAmount {
   text-align: right;
+}
+
+/* Add this CSS to your stylesheet */
+.tableText {
+  font-size: 16px; /* You can adjust the font size as needed */
 }
