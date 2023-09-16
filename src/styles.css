@@ -40,8 +40,12 @@ body {
   margin-top: 30px;
 }
 
+.smaller-label {
+  font-size: 17px;
+}
+
 .btn-custom {
-  background-color: #ffffff;
+  background-color: #eff2f1;
   color: #000;
   border: none;
   padding: 10px 20px;
@@ -57,6 +61,18 @@ body {
 
 .btn-custom:focus {
   outline: none;
+}
+
+.btn-learn-more {
+  background-color: transparent;
+  border: 1px solid #eff2f1;
+  color: #eff2f1;
+}
+
+.btn-learn-more:hover {
+  background-color: transparent;
+  color: #f7cb15;
+  border: 1px solid #f7cb15;
 }
 
 .navbar {
@@ -138,7 +154,7 @@ h3 {
 
 h5 {
   font-weight: lighter;
-  font-size: 15px;
+  font-size: 16px;
   color: #f7cb15;
 }
 
@@ -167,4 +183,12 @@ footer {
   width: 400px;
   height: max-content;
   padding: 1rem;
+}
+
+.text-gray {
+  color: #888888;
+}
+
+.tableAmount {
+  text-align: right;
 }

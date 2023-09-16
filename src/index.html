@@ -46,8 +46,11 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#income-tax">Income Tax</a>
+              <a class="nav-link active" href="#income-tax" data-bs-offset="0"
+                >Income Tax</a
+              >
             </li>
+
             <li class="nav-item">
               <a class="nav-link active" href="#mp2-dividends">MP2 Dividends</a>
             </li>
@@ -62,7 +65,10 @@
       class="min-vh-100 d-flex align-items-center text-center"
     >
       <div class="container mb-4">
-        <h1 class="text-uppercase fw-bolder display-1 neticents">
+        <h1
+          class="text-uppercase fw-bolder display-1 neticents"
+          style="margin-top: -50px"
+        >
           N E T I - C E N T S
         </h1>
 
@@ -71,44 +77,192 @@
         </h5>
         <div>
           <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
-          <a href="#" class="btn btn-custom ms-2">LEARN MORE</a>
+          <a href="#" class="btn btn-custom btn-learn-more ms-2">LEARN MORE</a>
         </div>
       </div>
     </section>
 
     <!-- Income Tax Calculator Container -->
-    <section id="income-tax">
+    <section id="income-tax" class="py-5">
       <div class="container">
-        <h2>Income Tax Calculator</h2>
-        <p id="text">Philippine tax rate per RA 10963</p>
+        <h2 class="text-center mt-0">Salary Income Tax Calculator</h2>
+        <h5 class="text-center mt-0 text-gray">
+          Philippine tax rate per RA 10963
+        </h5>
         <div class="row">
-          <div class="col">
-            <div class="btn-1">
+          <div class="col-md-6">
+            <h5 class="text-white mt-4">
+              Base Salary <span class="text-danger">*</span>
+            </h5>
+            <div class="mb-3">
               <input
                 type="text"
                 class="form-control"
-                placeholder="Enter Amount Here"
-                aria-label="Enter Amount Here"
+                id="baseSalary"
+                placeholder="Enter base salary"
+                required
+                oninput="this.value = formatNumber(this.value);"
               />
             </div>
+
+            <h5 class="text-white">Allowance</h5>
+            <div class="mb-3">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="allowance"
+                  placeholder="Enter allowance (optional)"
+                  oninput="this.value = formatNumber(this.value);"
+                />
+                <div class="input-group-text">
+                  <input type="checkbox" id="allowanceTaxable" />
+                  <span class="ms-2">Taxable</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col">
-            <div class="btn-2">
-              <select
-                class="form-select form-select-lg mb-3"
-                aria-label=".form-select-lg example"
+          <div class="col-md-6">
+            <h5 class="text-white mt-4">Sector</h5>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sector"
+                id="privateSector"
+                value="private"
+                checked
+              />
+              <label
+                class="form-check-label text-white smaller-label"
+                for="privateSector"
+                >Private</label
               >
-                <option selected>Monthly</option>
-                <option value="1">Annual</option>
-                <option value="2">Bi-Weekly</option>
-              </select>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sector"
+                id="publicSector"
+                value="public"
+              />
+              <label
+                class="form-check-label text-white smaller-label"
+                for="publicSector"
+                >Public</label
+              >
+            </div>
+
+            <h5 class="text-white mt-3">Period</h5>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="period"
+                id="monthly"
+                value="monthly"
+                checked
+              />
+              <label
+                class="form-check-label text-white smaller-label"
+                for="monthly"
+                >Monthly</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="period"
+                id="annually"
+                value="annually"
+              />
+              <label
+                class="form-check-label text-white smaller-label"
+                for="annually"
+                >Annually</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="period"
+                id="biWeekly"
+                value="bi-weekly"
+              />
+              <label
+                class="form-check-label text-white smaller-label"
+                for="biWeekly"
+                >Bi-Weekly</label
+              >
             </div>
           </div>
-          <div class="col">
-            <div class="btn-3">
-              <button id="calculate">Calculate</button>
-            </div>
-          </div>
+        </div>
+      </div>
+
+      <!-- Summary Table -->
+      <div class="container">
+        <h2 class="text-white mt-3">Summary</h2>
+        <div class="table-responsive mt-0">
+          <table class="table table-bordered table-dark">
+            <tbody>
+              <tr>
+                <td>Gross Income</td>
+                <td class="tableAmount">₱<span id="grossIncome">0.00</span></td>
+              </tr>
+              <tr>
+                <td>Allowance</td>
+                <td class="tableAmount">
+                  ₱<span id="allowanceAmount">0.00</span>
+                </td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td>Withholding Tax</td>
+                <td class="tableAmount">
+                  ₱<span id="allowanceAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><span></span></td>
+              </tr>
+              <tr>
+                <td>Contributions</td>
+                <td><span></span></td>
+              </tr>
+              <tr>
+                <td>SSS</td>
+                <td class="tableAmount">₱<span id="sssAmount">0.00</span></td>
+              </tr>
+              <tr>
+                <td>Mandatory Provident Fund</td>
+                <td class="tableAmount">₱<span id="mpfAmount">0.00</span></td>
+              </tr>
+              <tr>
+                <td>PhilHealth</td>
+                <td class="tableAmount">
+                  ₱<span id="philhealthAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Pag-ibig</td>
+                <td class="tableAmount">
+                  ₱<span id="pagibigAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><span></span></td>
+              </tr>
+              <tr>
+                <td>Monthly Take Home Pay</td>
+                <td class="tableAmount">₱<span id="takeHomePay">0.00</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
