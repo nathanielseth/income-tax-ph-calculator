@@ -1,48 +1,78 @@
+:root {
+  --font-jmono: 'Jetbrains Mono', monospace;
+  --font-inter: 'Inter';
+  --primary-bg-color: #1e1e24;
+  --text-color: #ffffff;
+  --highlight-color: #f7cb15;
+  --button-bg-color: #1e1e24;
+  --button-text-color: #ffffff;
+  --button-hover-bg-color: #ffffff;
+  --button-hover-text-color: #000;
+  --box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.yellow {
+  background: var(--highlight-color);
+}
+
+.inter {
+  font-family: var(--font-inter);
+}
+
+.text-gray {
+  color: #888888;
+}
+
 body,
 h2,
 h3,
 h4,
-h5,
-#text,
-#text2,
-#text3,
-#text4,
-#hidden {
-  font-family: 'Jetbrains Mono', monospace;
+h5 {
+  font-family: var(--font-jmono);
 }
 
 body {
-  background-color: #1e1e24;
+  background-color: var(--primary-bg-color);
   font-style: normal;
   font-weight: 400;
   line-height: 36px;
   margin: 0;
-  color: #ffffff;
+  color: var(--text-color);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--highlight-color);
+  margin-top: 600px;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--highlight-color);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+h5 {
+  font-weight: lighter;
+  font-size: 14px;
+  color: var(--highlight-color);
 }
 
 section {
   position: relative;
-  padding: 100px 13vw;
-}
-
-.container3 {
-  margin: 2rem 4rem;
-  padding: 2rem 4rem;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 100px 10vw;
 }
 
 .neticents {
-  font-family: 'Inter';
+  font-family: var(--font-inter);
   font-weight: bold;
   font-size: 90px;
   margin-top: -200;
   color: #212121;
-}
-
-#text {
-  font-size: 20px;
-  margin-top: 30px;
 }
 
 .smaller-label {
@@ -50,8 +80,8 @@ section {
 }
 
 .btn-custom {
-  background-color: #1e1e24;
-  color: #ffffff;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
   border: none;
   padding: 10px 20px;
   text-decoration: none;
@@ -59,8 +89,8 @@ section {
 }
 
 .btn-custom:hover {
-  background-color: #ffffff;
-  color: #000;
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
   transform: scale(1.05);
 }
 
@@ -81,7 +111,7 @@ section {
 }
 
 .navbar {
-  background: #1e1e24;
+  background: var(--primary-bg-color);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -89,115 +119,31 @@ section {
 }
 
 .navbar a.nav-link {
-  font-family: 'Inter';
-  font-size: 14px;
-  font-weight: 100;
-  margin: 0 -17px;
-  padding: 3px 5px;
+  font-family: var(--font-inter);
+  font-size: 12px;
+  margin: 0 2px !important;
+  padding: 3px 0px; /* Adjusted padding */
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .navbar a.nav-link:hover {
-  color: #ffffff !important;
-}
-
-.navbar-toggler {
-  color: black;
+  color: var(--highlight-color) !important;
 }
 
 .navbar-toggler-icon {
   background-color: black;
 }
 
-.navbar a.nav-link.active {
-  color: gray;
-}
-
 .nav-item {
-  padding-right: 50px;
-}
-
-h2 {
-  font-weight: 700;
-  font-size: 30px;
-  color: #f7cb15;
-  margin-top: 600px;
-  margin-bottom: 1.5rem;
-}
-
-.slabs li {
-  font-weight: 300;
-  font-size: 22px;
-  color: #000000;
-}
-
-#text2,
-#text3,
-#text4 {
-  font-weight: 300;
-  font-size: 22px;
-  color: #ffffff;
-}
-
-ul,
-li {
-  list-style-type: none;
-}
-
-.container3 ul li::before {
-  content: '\2022';
-  color: #020074;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-  margin-right: 0.5em;
-}
-
-h3 {
-  font-weight: 700;
-  font-size: 30px;
-  color: #f7cb15;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-h5 {
-  font-weight: lighter;
-  font-size: 14px;
-  color: #f7cb15;
-}
-
-#main-footer {
-  background: #f7cb15;
-  color: #ffffff;
-  text-align: center;
-  padding: 10px;
-  height: 230px;
+  padding-right: 0px;
 }
 
 footer {
-  background: #f7cb15;
-  color: #ffffff;
+  background: var(--highlight-color);
+  color: var(--text-color);
   text-align: center;
   padding: 40px 0;
-}
-
-.container-box {
-  background: #ffffff;
-  box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-  height: max-content;
-  padding: 1rem;
-}
-
-.text-gray {
-  color: #888888;
 }
 
 .tableAmount {
@@ -206,12 +152,4 @@ footer {
 
 .tableText {
   font-size: 16px;
-}
-
-.yellow {
-  background: #f7cb15;
-}
-
-.inter {
-  font-family: 'Inter';
 }
