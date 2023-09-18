@@ -1,440 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neti-Cents</title>
-    <meta
-      name="description"
-      content="Neti-Cents - Calculator for PH income tax & MP2 investment"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="src/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand text-yellow inter" href="#"
-          ><img
-            id="logo"
-            src="./images/logo.png"
-            alt="N"
-            draggable="false"
-            height="25"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample05"
-          aria-controls="navbarsExample05"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarsExample05">
-          <ul class="navbar-nav ms-auto ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link mx-2 active" aria-current="page" href="#home"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link mx-2 text-white"
-                href="#income-tax"
-                data-bs-offset="0"
-                >Income Tax</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-2 text-white" href="#mp2">Pag-Ibig MP2</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-2 text-white" href="#relevant-data"
-                >References</a
-              >
-            </li>
-          </ul>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neti-Cents</title>
+  <meta name="description" content="Neti-Cents - Calculator for PH income tax & MP2 investment" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-yellow inter" href="#"><img id="logo" src="./images/logo.png" alt="N"
+          draggable="false" height="25" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
+        aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample05">
+        <ul class="navbar-nav ms-auto ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-white" href="#income-tax" data-bs-offset="0">Income Tax</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-white" href="#mp2">Pag-Ibig MP2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-white" href="#relevant-data">References</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- About Section -->
-    <section
-      id="home"
-      class="min-vh-100 d-flex align-items-center text-center yellow"
-    >
-      <div class="container mb-5">
-        <h1 class="text-uppercase fw-bolder display-1 neticents mt-0">
-          NETI-CENTS
-        </h1>
-        <p class="text-black mt-1 mb-4">
-          Calculator for PH income tax & MP2 investment
-        </p>
-        <div>
-          <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
-          <a href="#" class="btn btn-custom btn-learn-more ms-2">LEARN MORE</a>
-        </div>
+  <!-- About Section -->
+  <section id="home" class="min-vh-100 d-flex align-items-center text-center yellow">
+    <div class="container mb-5">
+      <h1 class="text-uppercase fw-bolder display-1 neticents mt-0">
+        NETI-CENTS
+      </h1>
+      <p class="text-black mt-1 mb-4">
+        Calculator for PH income tax & MP2 investment
+      </p>
+      <div>
+        <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
+        <a href="#" class="btn btn-custom btn-learn-more ms-2">LEARN MORE</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Income Tax Calculator Container -->
-    <section id="income-tax" class="py-4">
-      <div class="container">
-        <h2 class="text-center mt-2 inter">Salary Income Tax Calculator</h2>
-        <h5 class="text-center mt-0 text-gray">
-          Philippine tax rate per RA 10963
-        </h5>
-        <div class="row">
-          <div class="col-md-6">
-            <h5 class="text-white mt-4">
-              Base Salary <span class="text-danger">*</span>
-            </h5>
-            <div class="text-field">
-              <input
-                type="text"
-                class="form-control"
-                id="baseSalary"
-                placeholder="Enter base salary"
-                required
-                oninput="this.value = formatNumber(this.value);"
-              />
-            </div>
+  <!-- Income Tax Calculator Container -->
+  <section id="income-tax" class="py-4">
+    <div class="container">
+      <h2 class="text-center mt-2 inter">Salary Income Tax Calculator</h2>
+      <h5 class="text-center mt-0 text-gray">
+        Philippine tax rate per RA 10963
+      </h5>
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="text-white mt-4">
+            Base Salary <span class="text-danger">*</span>
+          </h5>
+          <div class="text-field">
+            <input type="text" class="form-control" id="baseSalary" placeholder="Enter base salary" required
+              oninput="this.value = formatNumber(this.value);" />
+          </div>
 
-            <h5 class="text-white allowance">Allowance</h5>
-            <div class="text-field">
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="allowance"
-                  placeholder="Enter allowance (optional)"
-                  oninput="this.value = formatNumber(this.value);"
-                />
-                <div class="input-group-text">
-                  <input type="checkbox" id="allowanceTaxable" />
-                  <span class="taxableCheck">Taxable</span>
-                </div>
+          <h5 class="text-white allowance">Allowance</h5>
+          <div class="text-field">
+            <div class="input-group">
+              <input type="text" class="form-control" id="allowance" placeholder="Enter allowance (optional)"
+                oninput="this.value = formatNumber(this.value);" />
+              <div class="input-group-text">
+                <input type="checkbox" id="allowanceTaxable" />
+                <span class="taxableCheck">Taxable</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <h5 class="text-white mt-4">Sector</h5>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sector"
-                id="privateSector"
-                value="private"
-                checked
-              />
-              <label
-                class="form-check-label text-white smaller-label"
-                for="privateSector"
-                >Private</label
-              >
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sector"
-                id="publicSector"
-                value="public"
-              />
-              <label
-                class="form-check-label text-white smaller-label"
-                for="publicSector"
-                >Public</label
-              >
-            </div>
+        </div>
+        <div class="col-md-6">
+          <h5 class="text-white mt-4">Sector</h5>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sector" id="privateSector" value="private" checked />
+            <label class="form-check-label text-white smaller-label" for="privateSector">Private</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sector" id="publicSector" value="public" />
+            <label class="form-check-label text-white smaller-label" for="publicSector">Public</label>
+          </div>
 
-            <h5 class="text-white mt-3">Period</h5>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="period"
-                id="monthly"
-                value="monthly"
-                checked
-              />
-              <label
-                class="form-check-label text-white smaller-label"
-                for="monthly"
-                >Monthly</label
-              >
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="period"
-                id="annually"
-                value="annually"
-              />
-              <label
-                class="form-check-label text-white smaller-label"
-                for="annually"
-                >Annually</label
-              >
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="period"
-                id="biWeekly"
-                value="bi-weekly"
-              />
-              <label
-                class="form-check-label text-white smaller-label"
-                for="biWeekly"
-                >Bi-Weekly</label
-              >
-            </div>
+          <h5 class="text-white mt-3">Period</h5>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="period" id="monthly" value="monthly" checked />
+            <label class="form-check-label text-white smaller-label" for="monthly">Monthly</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="period" id="annually" value="annually" />
+            <label class="form-check-label text-white smaller-label" for="annually">Annually</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="period" id="biWeekly" value="bi-weekly" />
+            <label class="form-check-label text-white smaller-label" for="biWeekly">Bi-Weekly</label>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Summary Table -->
-      <div class="container">
-        <h2 class="text-white mt-3">Summary</h2>
-        <div class="table-responsive mt-0">
-          <table class="table table-bordered table-dark">
-            <tbody>
+    <!-- Summary Table -->
+    <div class="container">
+      <h2 class="text-white mt-3">Summary</h2>
+      <div class="table-responsive mt-0">
+        <table class="table table-bordered table-dark">
+          <tbody>
+            <tr>
+              <td class="tableText">Gross Income</td>
+              <td class="tableAmount tableText">
+                ₱<span id="grossIncome">0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="tableText">Withholding Tax</td>
+              <td class="tableAmount tableText">
+                ₱<span id="allowanceAmount">0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="tableText">SSS Contribution</td>
+              <td class="tableAmount tableText">
+                ₱<span id="sssAmount">0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="tableText">Mandatory Provident Fund</td>
+              <td class="tableAmount tableText">
+                ₱<span id="mpfAmount">0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="tableText">PhilHealth Contribution</td>
+              <td class="tableAmount tableText">
+                ₱<span id="philhealthAmount tableText">0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="tableText">Pag-ibig Contribution</td>
+              <td class="tableAmount tableText">
+                ₱<span id="pagibigAmount">0.00</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="rectangle-box red-box">
+            <p></p>
+            <h3 class="text-black">Tax Due</h3>
+            <h4 class="text-black">₱<span id="taxDue">0.00</span></h4>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="rectangle-box green-box">
+            <p></p>
+            <h3 class="text-black">Take Home Pay</h3>
+            <h4 class="text-black">₱<span id="takeHomePay">0.00</span></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class"rectangle-box"></div>
+  </section>
+
+  <!-- MP2 Calculator -->
+  <section id="mp2" class="py-4 yellow">
+    <div class="container">
+      <h2 class="text-center mt-2 text-black inter">
+        Pag-Ibig MP2 Calculator
+      </h2>
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Starting Amount -->
+          <h5 class="text-black mt-4">Starting Amount</h5>
+          <div class="text-field">
+            <input type="text" class="form-control" id="startingAmount" placeholder="Enter starting amount" required />
+          </div>
+
+          <!-- Continuous Contribution Amount -->
+          <h5 class="text-black mt-4">Continuous Contribution Amount</h5>
+          <div class="text-field">
+            <input type="text" class="form-control" id="contributionAmount" placeholder="Enter contribution amount"
+              required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <!-- Contribution Frequency and Rate of Return -->
+          <div class="text-field mt-4">
+            <h5 class="text-black">Contribution Frequency</h5>
+            <select class="form-select" id="contributionFrequency">
+              <option value="annually">Annually</option>
+              <option value="semi-annually">Semi-Annually</option>
+              <option value="monthly">Monthly</option>
+              <option value="weekly">Weekly</option>
+              <option value="bi-weekly">Bi-Weekly</option>
+            </select>
+          </div>
+          <div class="text-field mt-4">
+            <h5 class="text-black">Rate of Return (%)</h5>
+            <input type="text" class="form-control" id="rateOfReturn" value="6" />
+          </div>
+        </div>
+      </div>
+      <!-- MP2 Table -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-12">
+          <table class="table table-bordered table-white">
+            <!-- Added 'table-white' class -->
+            <thead>
               <tr>
-                <td class="tableText">Gross Income</td>
-                <td class="tableAmount tableText">
-                  ₱<span id="grossIncome">0.00</span>
-                </td>
+                <th>Year</th>
+                <th>Contribution</th>
+                <th>Interest Earned</th>
+                <th>End Balance</th>
+              </tr>
+            </thead>
+            <tbody id="mp2TableBody">
+              <tr>
+                <td>2024</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
               </tr>
               <tr>
-                <td class="tableText">Withholding Tax</td>
-                <td class="tableAmount tableText">
-                  ₱<span id="allowanceAmount">0.00</span>
-                </td>
+                <td>2025</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
               </tr>
               <tr>
-                <td class="tableText">SSS Contribution</td>
-                <td class="tableAmount tableText">
-                  ₱<span id="sssAmount">0.00</span>
-                </td>
+                <td>2026</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
               </tr>
               <tr>
-                <td class="tableText">Mandatory Provident Fund</td>
-                <td class="tableAmount tableText">
-                  ₱<span id="mpfAmount">0.00</span>
-                </td>
+                <td>2027</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
               </tr>
               <tr>
-                <td class="tableText">PhilHealth Contribution</td>
-                <td class="tableAmount tableText">
-                  ₱<span id="philhealthAmount tableText">0.00</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="tableText">Pag-ibig Contribution</td>
-                <td class="tableAmount tableText">
-                  ₱<span id="pagibigAmount">0.00</span>
-                </td>
+                <td>2028</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
+                <td>₱0.00</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="rectangle-box red-box">
-              <p></p>
-              <h3 class="text-black">Tax Due</h3>
-              <h4 class="text-black">₱<span id="taxDue">0.00</span></h4>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="rectangle-box green-box">
-              <p></p>
-              <h3 class="text-black">Take Home Pay</h3>
-              <h4 class="text-black">₱<span id="takeHomePay">0.00</span></h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MP2 Calculator -->
-    <section id="mp2" class="py-4 yellow">
-      <div class="container">
-        <h2 class="text-center mt-2 text-black inter">
-          Pag-Ibig MP2 Calculator
-        </h2>
-        <div class="row">
-          <div class="col-md-6">
-            <!-- Starting Amount -->
-            <h5 class="text-black mt-4">Starting Amount</h5>
-            <div class="text-field">
-              <input
-                type="text"
-                class="form-control"
-                id="startingAmount"
-                placeholder="Enter starting amount"
-                required
-              />
-            </div>
-
-            <!-- Continuous Contribution Amount -->
-            <h5 class="text-black mt-4">Continuous Contribution Amount</h5>
-            <div class="text-field">
-              <input
-                type="text"
-                class="form-control"
-                id="contributionAmount"
-                placeholder="Enter contribution amount"
-                required
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <!-- Contribution Frequency and Rate of Return -->
-            <div class="text-field mt-4">
-              <h5 class="text-black">Contribution Frequency</h5>
-              <select class="form-select" id="contributionFrequency">
-                <option value="annually">Annually</option>
-                <option value="semi-annually">Semi-Annually</option>
-                <option value="monthly">Monthly</option>
-                <option value="weekly">Weekly</option>
-                <option value="bi-weekly">Bi-Weekly</option>
-              </select>
-            </div>
-            <div class="text-field mt-4">
-              <h5 class="text-black">Rate of Return (%)</h5>
-              <input
-                type="text"
-                class="form-control"
-                id="rateOfReturn"
-                value="6"
-              />
-            </div>
-          </div>
-        </div>
-        <!-- MP2 Table -->
-        <div class="row justify-content-center mt-4">
-          <div class="col-md-12">
-            <table class="table table-bordered table-white">
-              <!-- Added 'table-white' class -->
-              <thead>
-                <tr>
-                  <th>Year</th>
-                  <th>Contribution</th>
-                  <th>Interest Earned</th>
-                  <th>End Balance</th>
-                </tr>
-              </thead>
-              <tbody id="mp2TableBody">
-                <tr>
-                  <td>2024</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                </tr>
-                <tr>
-                  <td>2025</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                </tr>
-                <tr>
-                  <td>2026</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                </tr>
-                <tr>
-                  <td>2027</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                </tr>
-                <tr>
-                  <td>2028</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                  <td>₱0.00</td>
-                </tr>
-              </tbody>
-            </table>
+      <!-- Boxes -->
+      <div class="row">
+        <div class="col-md-4 mb-0 mb-md-0">
+          <div class="rectangle-box black-box">
+            <h4 class="text-white mp2-box">Contribution</h4>
+            <h4 class="text-white">
+              ₱<span id="totalMP2Contribution">0.00</span>
+            </h4>
           </div>
         </div>
 
-        <!-- Boxes -->
-        <div class="row">
-          <div class="col-md-4">
-            <div class="rectangle-box black-box">
-              <h4 class="text-white mp2-box">Contribution</h4>
-              <h4 class="text-white">
-                ₱<span id="totalMP2Contribution">0.00</span>
-              </h4>
-            </div>
+        <div class="col-md-4 mb-0 mb-md-0">
+          <div class="rectangle-box black-box">
+            <h4 class="text-white mp2-box">Interest Earned</h4>
+            <h4 class="text-white">
+              ₱<span id="totalInterestEarned">0.00</span>
+            </h4>
           </div>
+        </div>
 
-          <div class="col-md-4">
-            <div class="rectangle-box black-box">
-              <h4 class="text-white mp2-box">Interest Earned</h4>
-              <h4 class="text-white">
-                ₱<span id="totalInterestEarned">0.00</span>
-              </h4>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="rectangle-box white-box">
-              <h4 class="text-black mp2-box">Investment Worth</h4>
-              <h4 class="text-black">
-                ₱<span id="investmentWorth">0.00</span>
-              </h4>
-            </div>
+        <div class="col-md-4">
+          <div class="rectangle-box white-box">
+            <h4 class="text-black mp2-box">Investment Worth</h4>
+            <h4 class="text-black">
+              ₱<span id="investmentWorth">0.00</span>
+            </h4>
           </div>
         </div>
       </div>
-    </section>
+  </section>
 
-    <!-- Relevant Data Section -->
-    <section id="relevant-data" class="py-1 white">
-      <div class="container-fluid">
-        <h2 class="text-center mt-5 inter">Relevant Data</h2>
-        <p class="text-center">
-          Income tax reference: RA 10963 - Section 5<br />SSS contribution:
-          Circular 2020-033<br />GSIS contribution: RA 8291 - Section 11<br />Pagibig
-          contribution: RA 9679 - Rule VI - Section 1<br />PhilHealth
-          contribution: PhilHealth contribution table
-        </p>
-      </div>
-    </section>
+  <section id="relevant-data" class="py-4 white text-center increased-bottom-margin">
+    <div class="container-fluid">
+      <h2 class="mt-2 inter">Relevant Data</h2>
+      <p>
+        What is
+        <a href="https://www.pagibigfund.gov.ph/Membership_ModifiedPagIBIG2.html" class="white-link" target="_blank"
+          style="text-decoration: underline">Pag-Ibig MP2?</a><br />
+        Income tax:
+        <a href="#" class="white-link" style="text-decoration: underline">RA 10963 - Section 5</a><br />
+        SSS contribution:
+        <a href="#" class="white-link" style="text-decoration: underline">Circular 2020-033</a><br />
+        GSIS contribution:
+        <a href="#" class="white-link" style="text-decoration: underline">RA 8291 - Section 11</a><br />
+        Pagibig contribution:
+        <a href="#" class="white-link" style="text-decoration: underline">RA 9679 - Rule VI - Section 1</a><br />
+        PhilHealth contribution:
+        <a href="#" class="white-link" style="text-decoration: underline">PhilHealth contribution table</a><br />
+      </p>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-      <div>
-        <p class="text-black">nathanielseth.dev</p>
-      </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
-    <script src="src/script.js"></script>
-  </body>
+  <footer id="myFooter" class="container p-2 rounded hidden">
+    <div class="d-flex align-items-center justify-content-center">
+      <p class="text-black mb-0">
+        made by
+        <a href="https://github.com/nathanielseth" target="_blank" class="text-black">nathanielseth.dev</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+  <script src="src/script.js"></script>
+</body>
+
 </html>
