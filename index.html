@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
-</head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" </head>
 
 <body>
   <!-- Navbar -->
@@ -42,7 +42,7 @@
     </div>
   </nav>
 
-  <!-- About Section -->
+  <!-- Hero Section -->
   <section id="home" class="min-vh-100 d-flex align-items-center text-center yellow">
     <div class="container mb-5">
       <h1 class="text-uppercase fw-bolder display-1 neticents mt-0">
@@ -304,29 +304,34 @@
       </div>
   </section>
 
-  <section id="relevant-data" class="py-4 white text-center increased-bottom-margin">
-    <div class="container-fluid">
-      <h2 class="mt-2 inter">Relevant Data</h2>
-      <p>
-        What is
-        <a href="https://www.pagibigfund.gov.ph/Membership_ModifiedPagIBIG2.html" class="white-link" target="_blank"
-          style="text-decoration: underline">Pag-Ibig MP2?</a><br />
-        Income tax:
-        <a href="#" class="white-link" style="text-decoration: underline">RA 10963 - Section 5</a><br />
-        SSS contribution:
-        <a href="#" class="white-link" style="text-decoration: underline">Circular 2020-033</a><br />
-        GSIS contribution:
-        <a href="#" class="white-link" style="text-decoration: underline">RA 8291 - Section 11</a><br />
-        Pagibig contribution:
-        <a href="#" class="white-link" style="text-decoration: underline">RA 9679 - Rule VI - Section 1</a><br />
-        PhilHealth contribution:
-        <a href="#" class="white-link" style="text-decoration: underline">PhilHealth contribution table</a><br />
+  <!-- reference section -->
+  <section id="relevant-data" class="py-4 text-center increased-bottom-margin">
+    <div class="container-fluid yellow-box">
+      <h2 class="mt-2 inter text-black">Relevant Data</h2>
+      <p class="text-black">
+        <span class="data-box">What is
+          <a href="https://www.pagibigfund.gov.ph/Membership_ModifiedPagIBIG2.html" class="black-link" target="_blank"
+            style="text-decoration: underline">Pag-Ibig MP2?</a></span><br />
+        <span class="data-box">Income tax:
+          <a href="#" class="black-link" style="text-decoration: underline">RA 10963 - Section 5</a>
+        </span><br />
+        <span class="data-box">SSS contribution:
+          <a href="#" class="black-link" style="text-decoration: underline">Circular 2020-033</a>
+        </span><br />
+        <span class="data-box">GSIS contribution:
+          <a href="#" class="black-link" style="text-decoration: underline">RA 8291 - Section 11</a>
+        </span><br />
+        <span class="data-box">Pagibig contribution:
+          <a href="#" class="black-link" style="text-decoration: underline">RA 9679 - Rule VI - Section 1</a>
+        </span><br />
+        <span class="data-box">PhilHealth contribution:
+          <a href="#" class="black-link" style="text-decoration: underline">PhilHealth contribution table</a>
+        </span><br />
       </p>
     </div>
   </section>
 
-
-  <footer id="myFooter" class="container p-2 rounded hidden">
+  <footer id="myFooter" class=" p-2 hidden">
     <div class="d-flex align-items-center justify-content-center">
       <p class="text-black mb-0">
         made by
@@ -334,6 +339,10 @@
       </p>
     </div>
   </footer>
+  <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
   <script src="src/script.js"></script>

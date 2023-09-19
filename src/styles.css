@@ -1,11 +1,9 @@
 :root {
   --font-jmono: 'Jetbrains Mono', monospace;
   --font-inter: 'Inter';
-  --primary-bg-color: #1e1e24;
+  --primary-bg-color: #020402;
   --text-color: white;
   --highlight-color: #f7cb15;
-  --button-bg-color: #1e1e24;
-  --button-text-color: white;
   --button-hover-bg-color: white;
   --button-hover-text-color: #000;
   --box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
@@ -21,6 +19,10 @@
 
 .text-gray {
   color: #888888;
+}
+
+.text-black {
+  color: var(--primary-bg-color);
 }
 
 body,
@@ -71,7 +73,7 @@ section {
   font-weight: bold;
   font-size: 90px;
   margin-top: -200;
-  color: #212121;
+  color: var(--primary-bg-color);
 }
 
 .smaller-label {
@@ -79,8 +81,8 @@ section {
 }
 
 .btn-custom {
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
+  background-color: var(--primary-bg-color);
+  color: var(--text-color);
   border: none;
   padding: 10px 20px;
   text-decoration: none;
@@ -97,7 +99,7 @@ section {
 
 .btn-learn-more {
   background-color: transparent;
-  border: 1.5px solid #212121;
+  border: 1.5px solid var(--primary-bg-color);
   color: #212121;
 }
 
@@ -119,7 +121,7 @@ section {
   font-family: var(--font-inter);
   font-size: 12px;
   margin: 0 2px !important;
-  padding: 3px 0px; /* Adjusted padding */
+  padding: 3px 0px;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -212,7 +214,7 @@ footer {
 }
 
 .white-box {
-  background-color: var(--button-text-color);
+  background-color: white;
 }
 
 .black-box {
@@ -274,8 +276,8 @@ footer {
   color: black;
 }
 
-.white-link {
-  color: white;
+.black-link {
+  color: black;
   text-decoration: underline;
   text-decoration-skip-ink: auto;
 }
@@ -287,4 +289,33 @@ footer {
 
 .increased-bottom-margin {
   margin-bottom: 15px;
+}
+
+.yellow-box {
+  background-color: white;
+  padding: 20px;
+  width: 55%;
+  margin: 0 auto;
+
+  border-radius: 10px;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background-color: var(--highlight-color);
+  color: #ffffff;
+  border: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+}
+
+#btn-back-to-top:hover {
+  background-color: #e5ab00;
+}
+
+#btn-back-to-top i.fas.fa-arrow-up {
+  color: black;
+  font-size: 18px;
 }
