@@ -61,24 +61,27 @@
   <!-- Income Tax Calculator Container -->
   <section id="income-tax" class="py-4">
     <div class="container">
-      <h2 class="text-center mt-2 inter">Salary Income Tax Calculator</h2>
+      <h2 class="text-center mt-2">Salary Income Tax Calculator</h2>
       <h5 class="text-center mt-0 text-gray">
         Philippine tax rate per RA 10963
       </h5>
       <div class="row">
         <div class="col-md-6">
           <h5 class="text-white mt-4">
-            Base Salary <span class="text-danger">*</span>
+            Base Salary
           </h5>
           <div class="text-field">
-            <input type="text" class="form-control" id="baseSalary" placeholder="Enter base salary" required
-              oninput="this.value = formatNumber(this.value);" />
+            <div class="input-group">
+              <span class="input-group-text">PHP</span>
+              <input type="text" class="form-control" id="baseSalary" placeholder="0.00"
+                oninput="this.value = formatNumber(this.value);" />
+            </div>
           </div>
 
           <h5 class="text-white allowance">Allowance</h5>
           <div class="text-field">
             <div class="input-group">
-              <input type="text" class="form-control" id="allowance" placeholder="Enter allowance (optional)"
+              <input type="text" class="form-control" id="allowance" placeholder="(optional)"
                 oninput="this.value = formatNumber(this.value);" />
               <div class="input-group-text">
                 <input type="checkbox" id="allowanceTaxable" />
@@ -188,29 +191,33 @@
   <!-- MP2 Calculator -->
   <section id="mp2" class="py-4 yellow">
     <div class="container">
-      <h2 class="text-center mt-2 text-black inter">
+      <h2 class="text-center mt-2 text-black">
         Pag-Ibig MP2 Calculator
       </h2>
       <div class="row">
         <div class="col-md-6">
-          <!-- Starting Amount -->
           <h5 class="text-black mt-4">Starting Amount</h5>
           <div class="text-field">
-            <input type="text" class="form-control" id="startingAmount" placeholder="Enter starting amount" required />
+            <div class="input-group">
+              <span class="input-group-text">PHP</span>
+              <input type="text" class="form-control no-focus-effect" id="startingAmount" placeholder="0.00" required />
+            </div>
           </div>
 
-          <!-- Continuous Contribution Amount -->
           <h5 class="text-black mt-4">Continuous Contribution Amount</h5>
           <div class="text-field">
-            <input type="text" class="form-control" id="contributionAmount" placeholder="Enter contribution amount"
-              required />
+            <div class="input-group">
+              <span class="input-group-text">PHP</span>
+              <input type="text" class="form-control no-focus-effect" id="contributionAmount" placeholder="0.00"
+                required />
+            </div>
           </div>
         </div>
+
         <div class="col-md-6">
-          <!-- Contribution Frequency and Rate of Return -->
           <div class="text-field mt-4">
             <h5 class="text-black">Contribution Frequency</h5>
-            <select class="form-select" id="contributionFrequency">
+            <select class="form-select no-focus-effect" id="contributionFrequency">
               <option value="annually">Annually</option>
               <option value="semi-annually">Semi-Annually</option>
               <option value="monthly">Monthly</option>
@@ -220,7 +227,7 @@
           </div>
           <div class="text-field mt-4">
             <h5 class="text-black">Rate of Return (%)</h5>
-            <input type="text" class="form-control" id="rateOfReturn" value="6" />
+            <input type="text" class="form-control no-focus-effect" id="rateOfReturn" value="6" />
           </div>
         </div>
       </div>
@@ -228,7 +235,6 @@
       <div class="row justify-content-center mt-4">
         <div class="col-md-12">
           <table class="table table-bordered table-white">
-            <!-- Added 'table-white' class -->
             <thead>
               <tr>
                 <th>Year</th>
@@ -306,32 +312,57 @@
 
   <!-- reference section -->
   <section id="relevant-data" class="py-4 text-center increased-bottom-margin">
-    <div class="container-fluid yellow-box">
-      <h2 class="mt-2 inter text-black">Relevant Data</h2>
-      <p class="text-black">
-        <span class="data-box">What is
-          <a href="https://www.pagibigfund.gov.ph/Membership_ModifiedPagIBIG2.html" class="black-link" target="_blank"
-            style="text-decoration: underline">Pag-Ibig MP2?</a></span><br />
-        <span class="data-box">Income tax:
-          <a href="#" class="black-link" style="text-decoration: underline">RA 10963 - Section 5</a>
-        </span><br />
-        <span class="data-box">SSS contribution:
-          <a href="#" class="black-link" style="text-decoration: underline">Circular 2020-033</a>
-        </span><br />
-        <span class="data-box">GSIS contribution:
-          <a href="#" class="black-link" style="text-decoration: underline">RA 8291 - Section 11</a>
-        </span><br />
-        <span class="data-box">Pagibig contribution:
-          <a href="#" class="black-link" style="text-decoration: underline">RA 9679 - Rule VI - Section 1</a>
-        </span><br />
-        <span class="data-box">PhilHealth contribution:
-          <a href="#" class="black-link" style="text-decoration: underline">PhilHealth contribution table</a>
-        </span><br />
-      </p>
+    <div class="container-fluid">
+      <h2 class="mt-2 text-white">Relevant Data</h2>
+      <div class="data-boxes-container">
+        <div class="data-box yellow-box">
+          <h3>About PH Income Tax</h3>
+          <p>
+            <span class="data-box">Income tax:
+              <a href="#" class="black-link" style="text-decoration: underline">RA 10963 - Section 5</a>
+            </span><br />
+            <span class="data-box">SSS:
+              <a href="https://www.sss.gov.ph/sss/DownloadContent?fileName=CI2022-033.pdf" class="black-link"
+                target="_blank" style="text-decoration: underline">Circular 2022-033</a>
+            </span><br />
+            <span class="data-box">GSIS:
+              <a href="https://www.gsis.gov.ph/about-us/gsis-laws/republic-act-no-8291/" class="black-link"
+                target="_blank" style="text-decoration: underline">RA 8291 - Section 11</a>
+            </span><br />
+            <span class="data-box">Pag-Ibig:
+              <a href="https://www.pagibigfund.gov.ph/document/pdf/governance/43.1_on_institutional_matters/IRR%20of%20RA%20No.%209679.pdf"
+                class="black-link" target="_blank" style="text-decoration: underline">RA 9679 - Rule VI - Section 1</a>
+            </span><br />
+            <span class="data-box">PhilHealth:
+              <a href="https://www.philhealth.gov.ph/partners/employers/ContributionTable_v2.pdf" class="black-link"
+                target="_blank" style="text-decoration: underline">PhilHealth contribution table</a>
+            </span><br />
+          </p>
+        </div>
+
+        <div class="data-box yellow-box">
+          <h3>About Pag-Ibig MP2</h3>
+          <p>
+            What is
+            <a href="https://www.pagibigfund.gov.ph/Membership_ModifiedPagIBIG2.html" class="black-link" target="_blank"
+              style="text-decoration: underline">Pag-Ibig MP2?</a>
+          </p>
+          <p>
+            How to enroll and invest:
+            <a href="https://www.pagibigfundservices.com/MP2Enrollment/" class="black-link" target="_blank"
+              style="text-decoration: underline">Investment page</a>
+          </p>
+          <p>
+            Modified Pag-Ibig (MP2) FAQs:
+            <a href="https://www.pagibigfund.gov.ph/FAQ_MP2.html" class="black-link" target="_blank"
+              style="text-decoration: underline">MP2 FAQs</a>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer id="myFooter" class=" p-2 hidden">
+  <footer id="myFooter" class="p-2 hidden">
     <div class="d-flex align-items-center justify-content-center">
       <p class="text-black mb-0">
         made by
@@ -339,6 +370,7 @@
       </p>
     </div>
   </footer>
+
   <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
     <i class="fas fa-arrow-up"></i>
   </button>
