@@ -6,9 +6,6 @@ const philHealth = [
   [100000, NaN, () => 5000],
 ];
 
-const bracket = (lower, upper) => (income) =>
-  (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
-
 const bracketSSS = (lower, upper) => (income) =>
   (isNaN(lower) || income >= lower) && (isNaN(upper) || income < upper);
 
@@ -78,71 +75,78 @@ const computePhilHealth = (monthly) => {
   );
 };
 
-const brackets = [
-  {
-    condition: bracket(NaN, 250000),
-    calculate: (_) => 0,
-  },
-  {
-    condition: bracket(250000, 400000),
-    calculate: (q) => 0 + (q - 250000) * 0.15,
-  },
-  {
-    condition: bracket(400000, 800000),
-    calculate: (q) => 22500 + (q - 400000) * 0.2,
-  },
-  {
-    condition: bracket(800000, 2000000),
-    calculate: (q) => 102500 + (q - 800000) * 0.25,
-  },
-  {
-    condition: bracket(2000000, 8000000),
-    calculate: (q) => 402500 + (q - 2000000) * 0.3,
-  },
-  {
-    condition: bracket(8000000, NaN),
-    calculate: (q) => 2202500 + (q - 8000000) * 0.35,
-  },
-];
+const bracket = (lower, upper) => (income) =>
+  (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
 
-const computeTaxDue = (taxableIncome) =>
-  brackets
-    .filter((q) => q.condition(taxableIncome))
-    .reduce((total, bracket) => (total += bracket.calculate(taxableIncome)), 0);
+const computeWithholdingTax = (taxableAnnualIncome, period) => {
+  let taxAmount = 0;
+
+  switch (true) {
+    case taxableAnnualIncome <= 250000:
+      taxAmount = 0;
+      break;
+    case taxableAnnualIncome <= 400000:
+      taxAmount = (taxableAnnualIncome - 250000) * 0.15;
+      break;
+    case taxableAnnualIncome <= 800000:
+      taxAmount = 22500 + (taxableAnnualIncome - 400000) * 0.2;
+      break;
+    case taxableAnnualIncome <= 2000000:
+      taxAmount = 102500 + (taxableAnnualIncome - 800000) * 0.25;
+      break;
+    case taxableAnnualIncome <= 8000000:
+      taxAmount = 402500 + (taxableAnnualIncome - 2000000) * 0.3;
+      break;
+    default:
+      taxAmount = 2202500 + (taxableAnnualIncome - 8000000) * 0.35;
+      break;
+  }
+
+  return taxAmount * (period === 'annually' ? 1 : 12);
+};
 
 function calculateTax() {
-  let monthlySalary = document.getElementById('monthlySalary').value;
-  let allowance = document.getElementById('allowance').value;
+  let monthlySalary = parseFloat(
+    document.getElementById('monthlySalary').value
+  );
+  let allowance = parseFloat(document.getElementById('allowance').value);
   let allowanceTaxable = document.getElementById('allowanceTaxable').checked;
   let sector = document.querySelector('input[name="sector"]:checked').value;
   let period = document.querySelector('input[name="period"]:checked').value;
 
+  let annualIncome = monthlySalary * 12;
+  let grossIncome = monthlySalary * (period === 'annually' ? 12 : 1);
+
   let sssContribution =
-    sector === 'private' ? computeSss(monthlySalary).sss : NaN;
+    sector === 'private' ? computeSss(annualIncome).sss : NaN;
   let mpfContribution =
-    sector === 'private' ? computeSss(monthlySalary).mpf : NaN;
-  let gsisContribution = sector === 'private' ? monthlySalary * 0.09 : NaN;
+    sector === 'private' ? computeSss(annualIncome).mpf : NaN;
+  let gsisContribution = sector === 'private' ? annualIncome * 0.09 : NaN;
   let pagibigContribution = 100;
-  let philhealthContribution = computePhilHealth(monthlySalary);
-  let grossIncome = monthlySalary;
+  let philhealthContribution = computePhilHealth(annualIncome);
 
   let totalDeductions =
     sssContribution +
     mpfContribution +
     philhealthContribution +
     pagibigContribution;
-
   let taxableIncome = grossIncome - totalDeductions;
-  let taxDue = computeTaxDue(taxableIncome, period);
+  let taxableAnnualIncome = taxableIncome * 12;
+  console.log(taxableAnnualIncome);
+
+  let withholdingTax = computeWithholdingTax(taxableAnnualIncome, period);
+
+  let taxDue = totalDeductions + withholdingTax;
+  let takeHomePay = grossIncome - taxDue;
 
   let factor = period === 'annually' ? 12 : period === 'bi-weekly' ? 26 : 1;
-  grossIncome *= factor;
   sssContribution *= factor;
   mpfContribution *= factor;
   philhealthContribution *= factor;
   pagibigContribution *= factor;
-  taxableIncome *= factor;
+  withholdingTax *= factor;
   taxDue *= factor;
+  takeHomePay *= factor;
 
   document.getElementById('grossIncome').innerText = grossIncome.toFixed(2);
   document.getElementById('sssAmount').innerText = sssContribution.toFixed(2);
@@ -152,4 +156,8 @@ function calculateTax() {
   document.getElementById('pagibigAmount').innerText =
     pagibigContribution.toFixed(2);
   document.getElementById('taxableIncome').innerText = taxableIncome.toFixed(2);
+  document.getElementById('withholdingTax').innerText =
+    withholdingTax.toFixed(2);
+  document.getElementById('taxDue').innerText = taxDue.toFixed(2);
+  document.getElementById('takeHomePay').innerText = takeHomePay.toFixed(2);
 }
