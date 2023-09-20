@@ -24,7 +24,6 @@ window.onscroll = function () {
 };
 
 // type animation
-
 const textArray = [
   'Calculator for PH income tax!',
   'Calculate your MP2 investments!',
