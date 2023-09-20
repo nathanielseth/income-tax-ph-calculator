@@ -89,8 +89,7 @@ section {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-custom:hover,
-.btn-custom:focus {
+.btn-custom:hover {
   background-color: var(--button-hover-bg-color);
   color: var(--button-hover-text-color);
   transform: scale(1.05);
@@ -331,4 +330,32 @@ footer {
 .data-box p {
   font-size: 16px;
   margin: 10px;
+}
+
+.typewriter-text {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em;
+}
+
+#typewriter-text::after {
+  content: '|';
+  animation: blink-caret 0.7s infinite alternate;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }

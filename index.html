@@ -7,7 +7,7 @@
   <title>Neti-Cents</title>
   <meta name="description" content="Neti-Cents - Calculator for PH income tax & MP2 investment" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="styles/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
@@ -48,9 +48,10 @@
       <h1 class="text-uppercase fw-bolder display-1 neticents mt-0">
         NETI-CENTS
       </h1>
-      <p class="text-black mt-1 mb-4">
-        Calculator for PH income tax & MP2 investment
-      </p>
+      <div class="text-black mt-1 mb-4 typewriter">
+        <p id="typewriter-text">
+        </p>
+      </div>
       <div>
         <a href="#income-tax" class="btn btn-custom me-2">CALCULATE</a>
         <a href="#" class="btn btn-custom btn-learn-more ms-2">LEARN MORE</a>
@@ -68,13 +69,12 @@
       <div class="row">
         <div class="col-md-6">
           <h5 class="text-white mt-4">
-            Base Salary
+            Monthly Salary
           </h5>
           <div class="text-field">
             <div class="input-group">
               <span class="input-group-text">PHP</span>
-              <input type="text" class="form-control" id="baseSalary" placeholder="0.00"
-                oninput="this.value = formatNumber(this.value);" />
+              <input type="text" class="form-control" id="monthlySalary" placeholder="0.00" oninput="calculateTax();" />
             </div>
           </div>
 
@@ -82,7 +82,7 @@
           <div class="text-field">
             <div class="input-group">
               <input type="text" class="form-control" id="allowance" placeholder="(optional)"
-                oninput="this.value = formatNumber(this.value);" />
+                oninput="calculateTax();" />
               <div class="input-group-text">
                 <input type="checkbox" id="allowanceTaxable" />
                 <span class="taxableCheck">Taxable</span>
@@ -93,99 +93,104 @@
         <div class="col-md-6">
           <h5 class="text-white mt-4">Sector</h5>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sector" id="privateSector" value="private" checked />
+            <input class="form-check-input" type="radio" name="sector" id="privateSector" value="private" checked
+              onchange="calculateTax();" />
             <label class="form-check-label text-white smaller-label" for="privateSector">Private</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sector" id="publicSector" value="public" />
+            <input class="form-check-input" type="radio" name="sector" id="publicSector" value="public"
+              onchange="calculateTax();" />
             <label class="form-check-label text-white smaller-label" for="publicSector">Public</label>
           </div>
-
           <h5 class="text-white mt-3">Period</h5>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="period" id="monthly" value="monthly" checked />
+            <input class="form-check-input" type="radio" name="period" id="monthly" value="monthly" checked
+              onchange="calculateTax();" />
             <label class="form-check-label text-white smaller-label" for="monthly">Monthly</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="period" id="annually" value="annually" />
+            <input class="form-check-input" type="radio" name="period" id="annually" value="annually"
+              onchange="calculateTax();" />
             <label class="form-check-label text-white smaller-label" for="annually">Annually</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="period" id="biWeekly" value="bi-weekly" />
+            <input class="form-check-input" type="radio" name="period" id="biWeekly" value="bi-weekly"
+              onchange="calculateTax();" />
             <label class="form-check-label text-white smaller-label" for="biWeekly">Bi-Weekly</label>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Summary Table -->
-    <div class="container">
-      <h2 class="text-white mt-3">Summary</h2>
-      <div class="table-responsive mt-0">
-        <table class="table table-bordered table-dark">
-          <tbody>
-            <tr>
-              <td class="tableText">Gross Income</td>
-              <td class="tableAmount tableText">
-                ₱<span id="grossIncome">0.00</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tableText">Withholding Tax</td>
-              <td class="tableAmount tableText">
-                ₱<span id="allowanceAmount">0.00</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tableText">SSS Contribution</td>
-              <td class="tableAmount tableText">
-                ₱<span id="sssAmount">0.00</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tableText">Mandatory Provident Fund</td>
-              <td class="tableAmount tableText">
-                ₱<span id="mpfAmount">0.00</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tableText">PhilHealth Contribution</td>
-              <td class="tableAmount tableText">
-                ₱<span id="philhealthAmount tableText">0.00</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tableText">Pag-ibig Contribution</td>
-              <td class="tableAmount tableText">
-                ₱<span id="pagibigAmount">0.00</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="rectangle-box red-box">
-            <p></p>
-            <h3 class="text-black">Tax Due</h3>
-            <h4 class="text-black">₱<span id="taxDue">0.00</span></h4>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="rectangle-box green-box">
-            <p></p>
-            <h3 class="text-black">Take Home Pay</h3>
-            <h4 class="text-black">₱<span id="takeHomePay">0.00</span></h4>
-          </div>
+      <!-- Summary Table -->
+      <div class="container">
+        <h2 class="text-white mt-3">Summary</h2>
+        <div class="table-responsive mt-0">
+          <table class="table table-bordered table-dark">
+            <tbody>
+              <tr>
+                <td class="tableText">Gross Income</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="grossIncome">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">Withholding Tax</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="withholdingAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">SSS Contribution</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="sssAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">Mandatory Provident Fund</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="mpfAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">PhilHealth Contribution</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="philhealthAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">Pag-ibig Contribution</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="pagibigAmount">0.00</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableText">Taxable Income</td>
+                <td class="tableAmount tableText">
+                  ₱<span id="taxableIncome">0.00</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="rectangle-box red-box">
+              <p></p>
+              <h3 class="text-black">Tax Due</h3>
+              <h4 class="text-black">₱<span id="taxDue">0.00</span></h4>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="rectangle-box green-box">
+              <p></p>
+              <h3 class="text-black">Take Home Pay</h3>
+              <h4 class="text-black">₱<span id="takeHomePay">0.00</span></h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class"rectangle-box"></div>
   </section>
 
   <!-- MP2 Calculator -->
@@ -378,6 +383,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
   <script src="src/script.js"></script>
+  <script src="src/calculation.js"></script>
 </body>
 
 </html>
