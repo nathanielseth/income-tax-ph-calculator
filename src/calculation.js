@@ -1,10 +1,18 @@
 'use strict';
 
 const philHealth = [
-  [NaN, 10000, () => 500],
-  [10000.01, 99999.99, (mon) => mon * 0.05],
-  [100000, NaN, () => 5000],
+  [NaN, 10000, () => 450],
+  [10000.01, 89999.99, (mon) => mon * 0.045],
+  [90000, NaN, () => 4050],
 ];
+
+const computePhilHealth = (monthly) => {
+  return (
+    philHealth
+      .filter((q) => bracket(q[0], q[1])(monthly))
+      .reduce((p, q) => (p += q[2](monthly)), 0) * 0.5
+  );
+};
 
 const bracketSSS = (lower, upper) => (income) =>
   (isNaN(lower) || income >= lower) && (isNaN(upper) || income < upper);
@@ -58,27 +66,23 @@ const computeSss = (salary) => {
     [24750, NaN, 900, 225],
   ];
 
-  const sss = matrix
-    .filter((q) => bracketSSS(q[0], q[1])(salary))
-    .reduce((p, q) => (p += q[2]), 0);
-  const mpf = matrix
-    .filter((q) => bracketSSS(q[0], q[1])(salary))
-    .reduce((p, q) => (p += q[3]), 0);
-  return { sss, mpf };
-};
+  let sss = 0;
+  let mpf = 0;
 
-const computePhilHealth = (monthly) => {
-  return (
-    philHealth
-      .filter((q) => bracket(q[0], q[1])(monthly))
-      .reduce((p, q) => (p += q[2](monthly)), 0) * 0.5
-  );
+  for (const bracket of matrix) {
+    if (bracketSSS(bracket[0], bracket[1])(salary)) {
+      sss += bracket[2];
+      mpf += bracket[3];
+    }
+  }
+
+  return { sss, mpf };
 };
 
 const bracket = (lower, upper) => (income) =>
   (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
 
-const computeWithholdingTax = (taxableAnnualIncome, period) => {
+const computeWithholdingTax = (taxableAnnualIncome) => {
   let taxAmount = 0;
 
   switch (true) {
@@ -99,10 +103,8 @@ const computeWithholdingTax = (taxableAnnualIncome, period) => {
       break;
     default:
       taxAmount = 2202500 + (taxableAnnualIncome - 8000000) * 0.35;
-      break;
   }
-
-  return taxAmount * (period === 'annually' ? 1 : 12);
+  return taxAmount / 12;
 };
 
 function calculateTax() {
@@ -114,16 +116,36 @@ function calculateTax() {
   let sector = document.querySelector('input[name="sector"]:checked').value;
   let period = document.querySelector('input[name="period"]:checked').value;
 
-  let annualIncome = monthlySalary * 12;
-  let grossIncome = monthlySalary * (period === 'annually' ? 12 : 1);
+  let grossIncome =
+    period === 'annually'
+      ? monthlySalary * 12
+      : period === 'bi-weekly'
+      ? monthlySalary / 2
+      : monthlySalary;
 
-  let sssContribution =
-    sector === 'private' ? computeSss(annualIncome).sss : NaN;
-  let mpfContribution =
-    sector === 'private' ? computeSss(annualIncome).mpf : NaN;
-  let gsisContribution = sector === 'private' ? annualIncome * 0.09 : NaN;
+  let sssContribution;
+  let mpfContribution;
+  let gsisContribution;
   let pagibigContribution = 100;
-  let philhealthContribution = computePhilHealth(annualIncome);
+  let philhealthContribution = computePhilHealth(monthlySalary);
+
+  if (sector === 'private') {
+    sssContribution = computeSss(grossIncome).sss;
+    mpfContribution = computeSss(grossIncome).mpf;
+
+    if (period === 'annually') {
+      sssContribution *= 12;
+      mpfContribution *= 12;
+      gsisContribution = grossIncome * 0.09 * 12;
+      pagibigContribution = 1200;
+      philhealthContribution *= 12;
+    } else if (period === 'bi-weekly') {
+      sssContribution /= 2;
+      mpfContribution /= 2;
+      gsisContribution = (grossIncome * 0.09) / 2;
+      philhealthContribution /= 2;
+    }
+  }
 
   let totalDeductions =
     sssContribution +
@@ -131,22 +153,21 @@ function calculateTax() {
     philhealthContribution +
     pagibigContribution;
   let taxableIncome = grossIncome - totalDeductions;
-  let taxableAnnualIncome = taxableIncome * 12;
-  console.log(taxableAnnualIncome);
+  let taxableAnnualIncome =
+    period === 'monthly'
+      ? taxableIncome * 12
+      : period === 'bi-weekly'
+      ? taxableIncome / 2
+      : taxableIncome;
 
-  let withholdingTax = computeWithholdingTax(taxableAnnualIncome, period);
+  let withholdingTax =
+    period === 'annually'
+      ? computeWithholdingTax(taxableAnnualIncome) * 12
+      : computeWithholdingTax(taxableAnnualIncome);
 
   let taxDue = totalDeductions + withholdingTax;
-  let takeHomePay = grossIncome - taxDue;
 
-  let factor = period === 'annually' ? 12 : period === 'bi-weekly' ? 26 : 1;
-  sssContribution *= factor;
-  mpfContribution *= factor;
-  philhealthContribution *= factor;
-  pagibigContribution *= factor;
-  withholdingTax *= factor;
-  taxDue *= factor;
-  takeHomePay *= factor;
+  let takeHomePay = grossIncome - taxDue;
 
   document.getElementById('grossIncome').innerText = grossIncome.toFixed(2);
   document.getElementById('sssAmount').innerText = sssContribution.toFixed(2);
