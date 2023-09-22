@@ -25,10 +25,8 @@ window.onscroll = function () {
 
 // type animation
 const textArray = [
-  'Calculator for PH income tax!',
+  'Calculator for PH salary income tax!',
   'Speedy calculations for you!',
-  'Calculate your MP2 investments!',
-  'Make it make sense!',
   'Financial calculator for the netizens!',
   'An open-source project!',
   'Updated for 2024!',
