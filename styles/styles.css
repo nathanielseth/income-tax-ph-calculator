@@ -280,11 +280,8 @@ section {
     font-size: 14px;
     padding: 8px 16px;
   }
-
   .btn-learn-more {
-    font-size: 14px;
-    padding: 8px 16px;
-    border-width: 1px;
+    display: none;
   }
 }
 
@@ -635,6 +632,7 @@ footer {
 }
 
 .resource-box:hover {
+  background-color: white;
   transform: scale(1.05);
 }
 
