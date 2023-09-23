@@ -244,6 +244,24 @@ section {
   outline: none;
 }
 
+.btn-custom2 {
+  font-family: var(--font-jmono);
+  font-weight: 550;
+  background-color: var(--primary-bg-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-custom2:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
+  transform: scale(1);
+  outline: none;
+}
+
 .btn-learn-more {
   background-color: transparent;
   border: 1.5px solid var(--primary-bg-color);

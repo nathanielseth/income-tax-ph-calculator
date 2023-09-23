@@ -21,7 +21,9 @@ const updateElementValue = (element, value) => {
   const monthlySalary = parseFormattedNumber(
     document.getElementById('monthlySalary').value
   );
-  element.innerText = numberFormat(monthlySalary === 0 ? 0 : value.toFixed(2));
+  element.innerText = numberFormat(
+    monthlySalary === 0 ? 0.0 : value.toFixed(2)
+  );
 };
 
 const numberFormat = (num) =>
@@ -175,9 +177,9 @@ const calculateTax = function () {
     grossIncome += allowance;
   }
 
-  let sssContribution;
-  let mpfContribution;
-  let gsisContribution;
+  let sssContribution = 0;
+  let mpfContribution = 0;
+  let gsisContribution = 0;
   let pagibigContribution = 100;
   let philhealthContribution = computePhilHealth(monthlySalary);
 
@@ -196,6 +198,34 @@ const calculateTax = function () {
       mpfContribution /= 2;
       gsisContribution = (grossIncome * 0.09) / 2;
       philhealthContribution /= 2;
+    }
+
+    const tableRows = document.querySelectorAll('.tableText');
+    for (const row of tableRows) {
+      if (
+        row.textContent.includes('Mandatory Provident Fund') ||
+        row.textContent.includes('GSIS Contribution')
+      ) {
+        row.textContent = 'GSIS Contribution';
+      }
+    }
+  } else if (sector === 'public') {
+    gsisContribution = grossIncome * 0.09;
+    mpfContribution = gsisContribution;
+
+    if (period === 'annually') {
+      gsisContribution *= 12;
+    } else if (period === 'bi-weekly') {
+      gsisContribution /= 2;
+    }
+    const tableRows = document.querySelectorAll('.tableText');
+    for (const row of tableRows) {
+      if (
+        row.textContent.includes('Mandatory Provident Fund') ||
+        row.textContent.includes('GSIS Contribution')
+      ) {
+        row.textContent = 'Mandatory Provident Fund';
+      }
     }
   }
 
@@ -238,4 +268,32 @@ const calculateTax = function () {
   updateElementValue(elements.withholdingTax, withholdingTax);
   updateElementValue(elements.taxDue, taxDue);
   updateElementValue(elements.takeHomePay, takeHomePay);
+
+  let summaryTable = [
+    [1, 'Gross Income', '', grossIncome.toFixed(2)],
+    [2, 'Withholding Tax', '', withholdingTax.toFixed(2)],
+    [3, 'SSS Contribution', '', sssContribution.toFixed(2)],
+    [5, 'MPF / GSIS', '', mpfContribution.toFixed(2)],
+    [6, 'PhilHealth Contribution', '', philhealthContribution.toFixed(2)],
+    [7, 'Pag-ibig Contribution', '', pagibigContribution.toFixed(2)],
+    [8, 'Taxable Income', '', taxableIncome.toFixed(2)],
+    [9, 'Tax Due', '', taxDue.toFixed(2)],
+    [10, 'Net Income', '', takeHomePay.toFixed(2)],
+  ];
+
+  props.invoice.table = summaryTable;
+
+  // check if pdf dl button should be enabled
+  const checkTakeHomePay = function () {
+    const takeHomePayElement = document.getElementById('takeHomePay');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const takeHomePay = parseFloat(takeHomePayElement.textContent);
+
+    if (takeHomePay > 0) {
+      downloadBtn.removeAttribute('disabled');
+    } else {
+      downloadBtn.setAttribute('disabled', 'true');
+    }
+  };
+  checkTakeHomePay();
 };
