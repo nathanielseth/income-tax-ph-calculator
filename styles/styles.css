@@ -145,26 +145,26 @@ section {
 
 @media (max-width: 991px) {
   #home {
-    padding: 90px 40px 120px; /* Adjust padding for smaller screens */
+    padding: 90px 40px 120px;
   }
 
   #home h2 {
-    font-size: 30px; /* Reduce font size for smaller screens */
+    font-size: 30px;
   }
 
   #home h2 span {
-    font-size: 40px; /* Reduce font size for smaller screens */
+    font-size: 40px;
   }
 
   #home .typewriter {
-    font-size: 14px; /* Reduce font size for smaller screens */
+    font-size: 14px;
   }
 
   .illustration {
-    width: 100%; /* Make the image responsive by setting width to 100% */
-    max-width: 460px; /* Limit the max-width of the image for larger screens */
+    width: 100%;
+    max-width: 460px;
     height: auto;
-    padding-right: 0; /* Remove padding for smaller screens */
+    padding-right: 0;
   }
 }
 

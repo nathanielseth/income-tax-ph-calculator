@@ -46,10 +46,15 @@ handleInput('monthlySalary');
 handleInput('allowance');
 
 const philHealth = [
-  [NaN, 10000, () => 500],
-  [10000.01, 99999.99, (mon) => mon * 0.05],
-  [100000, NaN, () => 5000],
+  [NaN, 10000, () => 450],
+  [10000.01, 89999.99, (mon) => mon * 0.045],
+  [90000, NaN, () => 4050],
 ];
+
+// 2024
+// [NaN, 10000, () => 500],
+// [10000.01, 99999.99, (mon) => mon * 0.05],
+// [100000, NaN, () => 5000];
 
 const computePhilHealth = (monthly) => {
   return (
@@ -166,6 +171,12 @@ const calculateTax = function () {
   const sector = document.querySelector('input[name="sector"]:checked').value;
   const period = document.querySelector('input[name="period"]:checked').value;
 
+  const switchLabel = document.getElementById('switch-label'); // Get the switch label element
+
+  // Define the labels for Mandatory Provident Fund and GSIS Contribution
+  const mpfLabel = 'Mandatory Provident Fund';
+  const gsisLabel = 'GSIS Contribution';
+
   let grossIncome =
     period === 'annually'
       ? monthlySalary * 12
@@ -200,15 +211,8 @@ const calculateTax = function () {
       philhealthContribution /= 2;
     }
 
-    const tableRows = document.querySelectorAll('.tableText');
-    for (const row of tableRows) {
-      if (
-        row.textContent.includes('Mandatory Provident Fund') ||
-        row.textContent.includes('GSIS Contribution')
-      ) {
-        row.textContent = 'GSIS Contribution';
-      }
-    }
+    // Update the switch label based on sector
+    switchLabel.textContent = mpfLabel;
   } else if (sector === 'public') {
     gsisContribution = grossIncome * 0.09;
     mpfContribution = gsisContribution;
@@ -218,15 +222,9 @@ const calculateTax = function () {
     } else if (period === 'bi-weekly') {
       gsisContribution /= 2;
     }
-    const tableRows = document.querySelectorAll('.tableText');
-    for (const row of tableRows) {
-      if (
-        row.textContent.includes('Mandatory Provident Fund') ||
-        row.textContent.includes('GSIS Contribution')
-      ) {
-        row.textContent = 'Mandatory Provident Fund';
-      }
-    }
+
+    // Update the switch label based on sector
+    switchLabel.textContent = gsisLabel;
   }
 
   let totalDeductions =
