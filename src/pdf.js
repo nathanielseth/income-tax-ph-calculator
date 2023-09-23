@@ -52,6 +52,8 @@ const props = {
       [6, 'PhilHealth Contribution', '', '₱0.00'],
       [7, 'Pag-ibig Contribution', '', '₱0.00'],
       [8, 'Taxable Income', '', '₱0.00'],
+      [9, 'Tax Due', '', '₱0.00'],
+      [10, 'Net Income', '', '₱0.00'],
     ],
 
     invDescLabel: 'Disclaimer',
