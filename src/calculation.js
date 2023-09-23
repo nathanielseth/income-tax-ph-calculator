@@ -1,9 +1,52 @@
 'use strict';
 
+const elements = {
+  monthlySalary: document.getElementById('monthlySalary'),
+  allowance: document.getElementById('allowance'),
+  allowanceTaxable: document.getElementById('allowanceTaxable'),
+  sectorInputs: document.querySelectorAll('input[name="sector"]'),
+  periodInputs: document.querySelectorAll('input[name="period"]'),
+  grossIncome: document.getElementById('grossIncome'),
+  sssAmount: document.getElementById('sssAmount'),
+  mpfAmount: document.getElementById('mpfAmount'),
+  philhealthAmount: document.getElementById('philhealthAmount'),
+  pagibigAmount: document.getElementById('pagibigAmount'),
+  taxableIncome: document.getElementById('taxableIncome'),
+  withholdingTax: document.getElementById('withholdingTax'),
+  taxDue: document.getElementById('taxDue'),
+  takeHomePay: document.getElementById('takeHomePay'),
+};
+
+const updateElementValue = (element, value) => {
+  const monthlySalary = parseFormattedNumber(
+    document.getElementById('monthlySalary').value
+  );
+  element.innerText = numberFormat(monthlySalary === 0 ? 0 : value.toFixed(2));
+};
+
+const numberFormat = (num) =>
+  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+const parseFormattedNumber = (str) => {
+  const parsedValue = parseFloat(str.replace(/[^0-9.]/g, ''));
+  return isNaN(parsedValue) ? 0.0 : parsedValue;
+};
+
+const handleInput = (elementId, callback) => {
+  const element = document.getElementById(elementId);
+  element.addEventListener('input', () => {
+    element.value = numberFormat(parseFormattedNumber(element.value));
+    calculateTax();
+  });
+};
+
+handleInput('monthlySalary');
+handleInput('allowance');
+
 const philHealth = [
-  [NaN, 10000, () => 450],
-  [10000.01, 89999.99, (mon) => mon * 0.045],
-  [90000, NaN, () => 4050],
+  [NaN, 10000, () => 500],
+  [10000.01, 99999.99, (mon) => mon * 0.05],
+  [100000, NaN, () => 5000],
 ];
 
 const computePhilHealth = (monthly) => {
@@ -107,21 +150,30 @@ const computeWithholdingTax = (taxableAnnualIncome) => {
   return taxAmount / 12;
 };
 
-function calculateTax() {
-  let monthlySalary = parseFloat(
+// calculate tax
+const calculateTax = function () {
+  // input values
+  const monthlySalary = parseFormattedNumber(
     document.getElementById('monthlySalary').value
   );
-  let allowance = parseFloat(document.getElementById('allowance').value);
-  let allowanceTaxable = document.getElementById('allowanceTaxable').checked;
-  let sector = document.querySelector('input[name="sector"]:checked').value;
-  let period = document.querySelector('input[name="period"]:checked').value;
+  const allowance = parseFormattedNumber(
+    document.getElementById('allowance').value
+  );
+  // check forms
+  const allowanceTaxable = document.getElementById('allowanceTaxable').checked;
+  const sector = document.querySelector('input[name="sector"]:checked').value;
+  const period = document.querySelector('input[name="period"]:checked').value;
 
   let grossIncome =
     period === 'annually'
       ? monthlySalary * 12
-      : period === 'bi-weekly'
+      : period === 'biweekly'
       ? monthlySalary / 2
       : monthlySalary;
+
+  if (allowanceTaxable) {
+    grossIncome += allowance;
+  }
 
   let sssContribution;
   let mpfContribution;
@@ -152,33 +204,38 @@ function calculateTax() {
     mpfContribution +
     philhealthContribution +
     pagibigContribution;
+
   let taxableIncome = grossIncome - totalDeductions;
+
   let taxableAnnualIncome =
     period === 'monthly'
       ? taxableIncome * 12
       : period === 'bi-weekly'
-      ? taxableIncome / 2
+      ? taxableIncome * 26
       : taxableIncome;
 
   let withholdingTax =
     period === 'annually'
       ? computeWithholdingTax(taxableAnnualIncome) * 12
+      : period === 'bi-weekly'
+      ? computeWithholdingTax(taxableAnnualIncome) / 26
       : computeWithholdingTax(taxableAnnualIncome);
 
   let taxDue = totalDeductions + withholdingTax;
 
   let takeHomePay = grossIncome - taxDue;
 
-  document.getElementById('grossIncome').innerText = grossIncome.toFixed(2);
-  document.getElementById('sssAmount').innerText = sssContribution.toFixed(2);
-  document.getElementById('mpfAmount').innerText = mpfContribution.toFixed(2);
-  document.getElementById('philhealthAmount').innerText =
-    philhealthContribution.toFixed(2);
-  document.getElementById('pagibigAmount').innerText =
-    pagibigContribution.toFixed(2);
-  document.getElementById('taxableIncome').innerText = taxableIncome.toFixed(2);
-  document.getElementById('withholdingTax').innerText =
-    withholdingTax.toFixed(2);
-  document.getElementById('taxDue').innerText = taxDue.toFixed(2);
-  document.getElementById('takeHomePay').innerText = takeHomePay.toFixed(2);
-}
+  if (!allowanceTaxable) {
+    takeHomePay += allowance;
+  }
+
+  updateElementValue(elements.grossIncome, grossIncome);
+  updateElementValue(elements.sssAmount, sssContribution);
+  updateElementValue(elements.mpfAmount, mpfContribution);
+  updateElementValue(elements.philhealthAmount, philhealthContribution);
+  updateElementValue(elements.pagibigAmount, pagibigContribution);
+  updateElementValue(elements.taxableIncome, taxableIncome);
+  updateElementValue(elements.withholdingTax, withholdingTax);
+  updateElementValue(elements.taxDue, taxDue);
+  updateElementValue(elements.takeHomePay, takeHomePay);
+};

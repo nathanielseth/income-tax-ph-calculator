@@ -11,6 +11,17 @@
   --box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .yellow {
   background: var(--highlight-color);
 }
@@ -26,6 +37,7 @@
 
 .inter {
   font-family: var(--font-inter);
+  font-size: 26px;
 }
 
 .text-gray {
@@ -93,7 +105,7 @@ section {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 90px 100px 160px;
+  padding: 90px 100px 190px;
 }
 
 #home h2 {
@@ -114,11 +126,11 @@ section {
 
 #home .typewriter {
   font-size: 14.5px;
-  margin-bottom: 22px;
+  margin-bottom: 38px;
 }
 
 .about {
-  margin: 50px;
+  margin: 5px;
 }
 
 .neticents {
@@ -126,9 +138,73 @@ section {
 }
 
 .illustration {
-  width: 450px;
+  width: 460px;
   height: auto;
-  padding-right: 50px;
+  padding-right: 40px;
+}
+
+@media (max-width: 991px) {
+  #home {
+    padding: 90px 40px 120px; /* Adjust padding for smaller screens */
+  }
+
+  #home h2 {
+    font-size: 30px; /* Reduce font size for smaller screens */
+  }
+
+  #home h2 span {
+    font-size: 40px; /* Reduce font size for smaller screens */
+  }
+
+  #home .typewriter {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+
+  .illustration {
+    width: 100%; /* Make the image responsive by setting width to 100% */
+    max-width: 460px; /* Limit the max-width of the image for larger screens */
+    height: auto;
+    padding-right: 0; /* Remove padding for smaller screens */
+  }
+}
+
+/* Media query for screens below 768px (mobile) */
+@media (max-width: 768px) {
+  #home {
+    padding: 50px 35px 120px;
+  }
+
+  #home h2 {
+    font-size: 0px;
+  }
+
+  #home h2 span {
+    font-size: 49px;
+    -webkit-text-fill-color: black;
+    -webkit-text-stroke-width: 0.3px;
+    color: var(--primary-bg-color);
+  }
+
+  #home .typewriter {
+    font-size: 12px;
+    white-space: nowrap;
+    margin: 20px;
+    margin-top: 0px;
+  }
+
+  .neticents {
+    font-size: 50px;
+  }
+
+  #about {
+    padding: 0px;
+    margin: 0px;
+    font-size: 14px;
+  }
+
+  .footer-content p {
+    font-size: 14px;
+  }
 }
 
 .row {
@@ -178,6 +254,20 @@ section {
   background-color: transparent;
   color: white;
   border: 1px solid white;
+}
+
+@media (max-width: 768px) {
+  .btn-custom {
+    margin-left: 0px;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .btn-learn-more {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-width: 1px;
+  }
 }
 
 .navbar {
@@ -262,7 +352,7 @@ footer {
 
 .footer-bottom p {
   font-family: var(--font-poppins);
-  font-size: 14px;
+  font-size: 13px;
   word-spacing: 2px;
 }
 
@@ -319,10 +409,40 @@ footer {
   margin-bottom: 0px;
 }
 
-.form-check-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.form-check-input {
+  margin: 1px;
+  display: none;
+}
+
+.form-check-label {
+  margin-right: 0px;
+}
+
+.form-check-label::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #f4bb14;
+  border-radius: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.form-check-input:checked + .form-check-label::before {
+  content: '\2713'; /* Unicode checkmark character */
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #f4bb14;
+  border-radius: 2px;
+  margin-right: 5px;
+  text-align: center;
+  line-height: 15px;
+  font-size: 15px;
+  font-weight: bolder;
+  background-color: var(--highlight-color);
+  color: #000;
 }
 
 .input-group-text {
@@ -352,18 +472,39 @@ footer {
   color: white;
 }
 
-.text-field input.form-control:focus {
-  border-color: var(--highlight-color);
-  box-shadow: 0 0 10px rgba(247, 203, 21, 0.5);
+.text-field input.form-control,
+.text-field select.form-select {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.text-field input.form-control:focus,
 .text-field select.form-select:focus {
-  border-color: var(--highlight-color);
-  box-shadow: 0 0 10px rgba(247, 203, 21, 0.5);
+  border-color: #f4bb14;
+  box-shadow: 0 0 1px rgba(247, 203, 21, 0.5);
+  border: 2px solid #f4bb14;
 }
 
 .text-field select.form-select {
   border-radius: 0;
+}
+
+.text-field .input-group-text {
+  font-family: var(--font-poppins);
+  background-color: #f4bb14;
+  border: 2px solid #f4bb14;
+  border-radius: 5px;
+}
+
+.text-field .input-group-text input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+.text-field .input-group-text .taxableCheck {
+  font-family: var(--font-poppins);
+  color: #000;
 }
 
 .no-focus-effect:focus {
@@ -429,7 +570,6 @@ footer {
 
 .typewriter-text {
   overflow: hidden;
-  white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.15em;
   margin-bottom: 22px;
@@ -494,7 +634,7 @@ footer {
 
 .resource-box a {
   font-family: var(--font-poppins);
-  text-decoration: none;
+  text-decoration: underline black;
   color: black;
 }
 
@@ -543,6 +683,12 @@ footer {
   border: 2px solid black;
   border-radius: 10px;
 }
+
+.contact-control:focus {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
 .right button {
   border: none;
   border-radius: 0;
