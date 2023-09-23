@@ -341,7 +341,7 @@ footer {
 .footer-content p {
   margin: 10px auto;
   line-height: 28px;
-  font-size: 14px;
+  font-size: 12.5px;
 }
 
 .social-link {
@@ -367,7 +367,7 @@ footer {
 
 .footer-bottom p {
   font-family: var(--font-poppins);
-  font-size: 13px;
+  font-size: 12px;
   word-spacing: 2px;
 }
 
@@ -634,6 +634,7 @@ footer {
 .resource-box:hover {
   background-color: white;
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .resource-box img {
