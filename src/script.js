@@ -11,6 +11,8 @@ const toggleBackToTopButton = () => {
 };
 
 const typeAnimation = () => {
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
   const textArray = [
     'Calculator for PH salary income tax!',
     'Speedy calculations for you!',
@@ -25,7 +27,7 @@ const typeAnimation = () => {
   let isTyping = true;
 
   const type = () => {
-    if (charIndex < textArray[textIndex].length) {
+    if (!isFirefox && charIndex < textArray[textIndex].length) {
       typewriterText.textContent += textArray[textIndex].charAt(charIndex);
       charIndex++;
       setTimeout(type, 60);
@@ -36,12 +38,12 @@ const typeAnimation = () => {
   };
 
   const erase = () => {
-    if (isTyping) {
+    if (!isFirefox && isTyping) {
       typewriterText.textContent =
         textArray[textIndex].substring(0, charIndex - 1) + '|';
       isTyping = false;
       setTimeout(erase, 25);
-    } else {
+    } else if (!isFirefox) {
       typewriterText.textContent = textArray[textIndex].substring(
         0,
         charIndex - 1
@@ -57,7 +59,11 @@ const typeAnimation = () => {
     }
   };
 
-  type();
+  if (!isFirefox) {
+    type();
+  } else {
+    typewriterText.textContent = textArray[0];
+  }
 };
 
 const submitForm = (event) => {

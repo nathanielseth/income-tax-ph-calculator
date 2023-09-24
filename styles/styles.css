@@ -14,7 +14,7 @@
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .animate-on-scroll.visible {
@@ -104,6 +104,7 @@ section {
 .home {
   margin-left: 40px;
   margin-right: 40px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
