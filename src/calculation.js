@@ -269,13 +269,15 @@ const calculateTax = function () {
 
   let summaryTable = [
     [1, 'Gross Income', '', grossIncome.toFixed(2)],
+    [1, 'Allowance', '', allowance.toFixed(2)],
     [2, 'Withholding Tax', '', withholdingTax.toFixed(2)],
     [3, 'SSS Contribution', '', sssContribution.toFixed(2)],
-    [5, 'MPF / GSIS', '', mpfContribution.toFixed(2)],
+    [4, 'SSS Mandatory Provident FUnd', '', mpfContribution.toFixed(2)],
+    [5, 'GSIS Contribution', '', gsisContribution.toFixed(2)],
     [6, 'PhilHealth Contribution', '', philhealthContribution.toFixed(2)],
     [7, 'Pag-ibig Contribution', '', pagibigContribution.toFixed(2)],
     [8, 'Taxable Income', '', taxableIncome.toFixed(2)],
-    [9, 'Tax Due', '', taxDue.toFixed(2)],
+    [9, 'Total Tax Due', '', taxDue.toFixed(2)],
     [10, 'Net Income', '', takeHomePay.toFixed(2)],
   ];
 
