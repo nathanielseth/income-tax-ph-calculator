@@ -194,7 +194,7 @@ section {
 
 @media (max-width: 768px) {
   #home {
-    padding: 50px 35px 120px;
+    padding: 100px 35px 120px;
   }
 
   #home h2 {
@@ -202,7 +202,7 @@ section {
   }
 
   #home h2 span {
-    font-size: 35px;
+    font-size: 31px;
     -webkit-text-fill-color: black;
     -webkit-text-stroke-width: 0.3px;
     color: var(--primary-bg-color);

@@ -11,6 +11,7 @@ const elements = {
   mpfAmount: document.getElementById('mpfAmount'),
   philhealthAmount: document.getElementById('philhealthAmount'),
   pagibigAmount: document.getElementById('pagibigAmount'),
+  totalDeductions: document.getElementById('totalDeductions'),
   taxableIncome: document.getElementById('taxableIncome'),
   withholdingTax: document.getElementById('withholdingTax'),
   taxDue: document.getElementById('taxDue'),
@@ -264,6 +265,7 @@ const calculateTax = function () {
   updateElementValue(elements.pagibigAmount, pagibigContribution);
   updateElementValue(elements.taxableIncome, taxableIncome);
   updateElementValue(elements.withholdingTax, withholdingTax);
+  updateElementValue(elements.totalDeductions, totalDeductions);
   updateElementValue(elements.taxDue, taxDue);
   updateElementValue(elements.takeHomePay, takeHomePay);
 
@@ -272,13 +274,14 @@ const calculateTax = function () {
     [1, 'Allowance', '', allowance.toFixed(2)],
     [2, 'Withholding Tax', '', withholdingTax.toFixed(2)],
     [3, 'SSS Contribution', '', sssContribution.toFixed(2)],
-    [4, 'SSS Mandatory Provident FUnd', '', mpfContribution.toFixed(2)],
+    [4, 'SSS Mandatory Provident Fund', '', mpfContribution.toFixed(2)],
     [5, 'GSIS Contribution', '', gsisContribution.toFixed(2)],
     [6, 'PhilHealth Contribution', '', philhealthContribution.toFixed(2)],
     [7, 'Pag-ibig Contribution', '', pagibigContribution.toFixed(2)],
-    [8, 'Taxable Income', '', taxableIncome.toFixed(2)],
-    [9, 'Total Tax Due', '', taxDue.toFixed(2)],
-    [10, 'Net Income', '', takeHomePay.toFixed(2)],
+    [8, 'Total Contribution', '', totalDeductions.toFixed(2)],
+    [9, 'Taxable Income', '', taxableIncome.toFixed(2)],
+    [10, 'Total Tax Due', '', taxDue.toFixed(2)],
+    [11, 'Net Income', '', takeHomePay.toFixed(2)],
   ];
 
   props.invoice.table = summaryTable;
