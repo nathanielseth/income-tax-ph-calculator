@@ -1,6 +1,18 @@
 # NETI-CENTS
 
-Philippine Income Tax Calculator built with Vanilla JS and Bootstrap 5. 
+Philippine Salary Income Tax Calculator 
+
+## About The Project
+
+There are quite a few PH tax calculators online, however, I found out that some of their calculations were inconsistent and had a lot of errors. This drove me to develop an accurate and up-to-date tax calculator of my own.
+
+I've scoured the web and implemented the latest data and tax tables for accurate calculations. However, tax brackets and other variables may change over time, but I will try to update the calculator whenever such changes occur. Additionally, I welcome your suggestions for improvements; you can do so by forking this repo, creating a pull request, or opening an issue.
+
+Built with 
+- JavaScript
+- HTML/CSS
+- Bootstrap 5 (a little bit)
+
 
 ## Getting Started
 
@@ -39,8 +51,6 @@ const computeWithholdingTax = (taxableAnnualIncome) => {
 ```
 ### Contributions
 ```javascript
-const gsisContribution = grossIncome * 0.09 * 12;
-
 const philHealth = [
   [NaN, 10000, () => 500],
   [10000.01, 99999.99, (mon) => mon * 0.05],
@@ -58,7 +68,7 @@ const computePhilHealth = (monthly) => {
 const bracketSSS = (lower, upper) => (income) =>
   (isNaN(lower) || income >= lower) && (isNaN(upper) || income < upper);
 
-const computeSss = (salary) => {
+const computeSSS = (salary) => {
   const matrix = [
     [1000, 3250, 135, 0],[3250, 3750, 157.5, 0],
     [3750, 4250, 180, 0],[4250, 4750, 202.5, 0],
@@ -97,11 +107,6 @@ const computeSss = (salary) => {
   return { sss, mpf };
 };
 ```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
 
 ## License
 
