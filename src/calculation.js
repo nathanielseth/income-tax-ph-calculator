@@ -22,9 +22,8 @@ const updateElementValue = (element, value) => {
   const monthlySalary = parseFormattedNumber(
     document.getElementById('monthlySalary').value
   );
-  element.innerText = numberFormat(
-    monthlySalary === 0 ? 0.0 : value.toFixed(2)
-  );
+  const formattedValue = monthlySalary === 0 ? '0.00' : value.toFixed(2);
+  element.innerText = numberFormat(formattedValue);
 };
 
 const numberFormat = (num) =>
