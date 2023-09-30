@@ -4,9 +4,7 @@ Philippine Salary Income Tax Calculator
 
 ## About The Project
 
-There are quite a few PH tax calculators online, however, I found out that some of their calculations were inconsistent and had a lot of errors. This drove me to develop an accurate and up-to-date tax calculator of my own.
-
-I've scoured the web and implemented the latest data and tax tables for accurate calculations. However, tax brackets and other variables may change over time, but I will try to update the calculator whenever such changes occur. Additionally, I welcome your suggestions for improvements; you can do so by forking this repo, creating a pull request, or opening an issue.
+There are quite a few PH tax calculators online, however, I found out that some of their calculations were inconsistent and had a lot of errors. This drove me to develop an up-to-date tax calculator of my own.
 
 Built with 
 - JavaScript
@@ -51,7 +49,10 @@ const computeWithholdingTax = (taxableAnnualIncome) => {
 ```
 ### Contributions
 ```javascript
-const philHealth = [
+const bracket = (lower, upper) => (income) =>
+  (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
+
+const bracketPhilHealth = [
   [NaN, 10000, () => 500],
   [10000.01, 99999.99, (mon) => mon * 0.05],
   [100000, NaN, () => 5000],
@@ -59,9 +60,12 @@ const philHealth = [
 
 const computePhilHealth = (monthly) => {
   return (
-    philHealth
-      .filter((q) => bracket(q[0], q[1])(monthly))
-      .reduce((p, q) => (p += q[2](monthly)), 0) * 0.5
+    bracketPhilHealth
+      .filter((phBracket) => bracket(phBracket[0], phBracket[1])(monthly))
+      .reduce(
+        (contribution, phBracket) => (contribution += phBracket[2](monthly)),
+        0
+      ) * 0.5
   );
 };
 
@@ -104,6 +108,7 @@ const computeSSS = (salary) => {
       mpf += bracket[3];
     }
   }
+
   return { sss, mpf };
 };
 ```
