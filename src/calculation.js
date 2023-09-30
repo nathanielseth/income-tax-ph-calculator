@@ -1,11 +1,15 @@
 'use strict';
 
+// DOM Elements
 const elements = {
+  // input elements
   monthlySalary: document.getElementById('monthlySalary'),
   allowance: document.getElementById('allowance'),
   allowanceTaxable: document.getElementById('allowanceTaxable'),
   sectorInputs: document.querySelectorAll('input[name="sector"]'),
   periodInputs: document.querySelectorAll('input[name="period"]'),
+
+  // output elements
   grossIncome: document.getElementById('grossIncome'),
   sssAmount: document.getElementById('sssAmount'),
   mpfAmount: document.getElementById('mpfAmount'),
@@ -26,6 +30,7 @@ const updateElementValue = (element, value) => {
   element.innerText = numberFormat(formattedValue);
 };
 
+// functions for formatting & readability
 const numberFormat = (num) =>
   num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -33,7 +38,7 @@ const parseFormattedNumber = (str) => {
   const parsedValue = parseFloat(str.replace(/[^0-9.]/g, ''));
   return isNaN(parsedValue) ? 0.0 : parsedValue;
 };
-
+// function to handle input elements
 const handleInput = (elementId, callback) => {
   const element = document.getElementById(elementId);
   element.addEventListener('input', () => {
@@ -45,29 +50,37 @@ const handleInput = (elementId, callback) => {
 handleInput('monthlySalary');
 handleInput('allowance');
 
-const philHealth = [
-  [NaN, 10000, () => 450],
-  [10000.01, 89999.99, (mon) => mon * 0.045],
-  [90000, NaN, () => 4050],
-];
+// contribution functions
 
-// 2024
-// [NaN, 10000, () => 500],
-// [10000.01, 99999.99, (mon) => mon * 0.05],
-// [100000, NaN, () => 5000];
+const bracket = (lower, upper) => (income) =>
+  (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
+
+const currentYear = new Date().getFullYear();
+const bracketPhilHealth = [
+  [NaN, 10000, () => (currentYear > 2023 ? 500 : 450)],
+  [
+    10000.01,
+    99999.99,
+    (mon) => (currentYear > 2023 ? mon * 0.05 : mon * 0.045),
+  ],
+  [100000, NaN, () => (currentYear > 2023 ? 5000 : 4050)],
+];
 
 const computePhilHealth = (monthly) => {
   return (
-    philHealth
-      .filter((q) => bracket(q[0], q[1])(monthly))
-      .reduce((p, q) => (p += q[2](monthly)), 0) * 0.5
+    bracketPhilHealth
+      .filter((phBracket) => bracket(phBracket[0], phBracket[1])(monthly))
+      .reduce(
+        (contribution, phBracket) => (contribution += phBracket[2](monthly)),
+        0
+      ) * 0.5
   );
 };
 
 const bracketSSS = (lower, upper) => (income) =>
   (isNaN(lower) || income >= lower) && (isNaN(upper) || income < upper);
 
-const computeSss = (salary) => {
+const computeSSS = (salary) => {
   const matrix = [
     [1000, 3250, 135, 0],
     [3250, 3750, 157.5, 0],
@@ -129,9 +142,7 @@ const computeSss = (salary) => {
   return { sss, mpf };
 };
 
-const bracket = (lower, upper) => (income) =>
-  (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
-
+// tax due function
 const computeWithholdingTax = (taxableAnnualIncome) => {
   let taxAmount = 0;
 
@@ -157,7 +168,7 @@ const computeWithholdingTax = (taxableAnnualIncome) => {
   return taxAmount / 12;
 };
 
-// calculate tax
+// main function to calculate tax
 const calculateTax = function () {
   // input values
   const monthlySalary = parseFormattedNumber(
@@ -171,9 +182,8 @@ const calculateTax = function () {
   const sector = document.querySelector('input[name="sector"]:checked').value;
   const period = document.querySelector('input[name="period"]:checked').value;
 
-  const switchLabel = document.getElementById('switch-label'); // Get the switch label element
+  const switchLabel = document.getElementById('switch-label');
 
-  // Define the labels for Mandatory Provident Fund and GSIS Contribution
   const mpfLabel = 'Mandatory Provident Fund';
   const gsisLabel = 'GSIS Contribution';
 
@@ -195,8 +205,8 @@ const calculateTax = function () {
   let philhealthContribution = computePhilHealth(monthlySalary);
 
   if (sector === 'private') {
-    sssContribution = computeSss(grossIncome).sss;
-    mpfContribution = computeSss(grossIncome).mpf;
+    sssContribution = computeSSS(grossIncome).sss;
+    mpfContribution = computeSSS(grossIncome).mpf;
 
     if (period === 'annually') {
       sssContribution *= 12;
@@ -211,7 +221,6 @@ const calculateTax = function () {
       philhealthContribution /= 2;
     }
 
-    // Update the switch label based on sector
     switchLabel.textContent = mpfLabel;
   } else if (sector === 'public') {
     gsisContribution = grossIncome * 0.09;
@@ -223,7 +232,6 @@ const calculateTax = function () {
       gsisContribution /= 2;
     }
 
-    // Update the switch label based on sector
     switchLabel.textContent = gsisLabel;
   }
 
