@@ -1,6 +1,16 @@
 # NETI-CENTS
 
-Philippine Income Tax Calculator built with Vanilla JS and Bootstrap 5. 
+Philippine Salary Income Tax Calculator 
+
+## About The Project
+
+There are quite a few PH tax calculators online, however, I found out that some of their calculations were inconsistent and had a lot of errors. This drove me to develop an up-to-date tax calculator of my own.
+
+Built with 
+- JavaScript
+- HTML/CSS
+- Bootstrap 5 (a little bit)
+
 
 ## Getting Started
 
@@ -39,9 +49,10 @@ const computeWithholdingTax = (taxableAnnualIncome) => {
 ```
 ### Contributions
 ```javascript
-const gsisContribution = grossIncome * 0.09 * 12;
+const bracket = (lower, upper) => (income) =>
+  (isNaN(lower) || income >= lower) && (isNaN(upper) || income <= upper);
 
-const philHealth = [
+const bracketPhilHealth = [
   [NaN, 10000, () => 500],
   [10000.01, 99999.99, (mon) => mon * 0.05],
   [100000, NaN, () => 5000],
@@ -49,16 +60,19 @@ const philHealth = [
 
 const computePhilHealth = (monthly) => {
   return (
-    philHealth
-      .filter((q) => bracket(q[0], q[1])(monthly))
-      .reduce((p, q) => (p += q[2](monthly)), 0) * 0.5
+    bracketPhilHealth
+      .filter((phBracket) => bracket(phBracket[0], phBracket[1])(monthly))
+      .reduce(
+        (contribution, phBracket) => (contribution += phBracket[2](monthly)),
+        0
+      ) * 0.5
   );
 };
 
 const bracketSSS = (lower, upper) => (income) =>
   (isNaN(lower) || income >= lower) && (isNaN(upper) || income < upper);
 
-const computeSss = (salary) => {
+const computeSSS = (salary) => {
   const matrix = [
     [1000, 3250, 135, 0],[3250, 3750, 157.5, 0],
     [3750, 4250, 180, 0],[4250, 4750, 202.5, 0],
@@ -94,14 +108,10 @@ const computeSss = (salary) => {
       mpf += bracket[3];
     }
   }
+
   return { sss, mpf };
 };
 ```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
 
 ## License
 
