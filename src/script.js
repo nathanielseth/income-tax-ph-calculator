@@ -1,3 +1,5 @@
+'use strict';
+
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,

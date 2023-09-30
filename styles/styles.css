@@ -17,6 +17,12 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.animate-on-scroll2 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
@@ -113,11 +119,11 @@ section {
 }
 
 .home img {
-  width: 40%;
+  width: 45%;
   height: auto;
   max-height: 100%;
   max-width: 100%;
-  margin-right: 100px;
+  margin-right: 0px;
 }
 
 #home h2 {
@@ -126,6 +132,7 @@ section {
   font-weight: bold;
   color: var(--primary-bg-color);
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 #home h2 span {
@@ -134,6 +141,7 @@ section {
   -webkit-text-stroke-color: black;
   font-size: 50px;
   font-family: var(--font-poppins);
+  white-space: nowrap;
 }
 
 #home .typewriter {
@@ -160,7 +168,11 @@ section {
 }
 
 .about {
-  margin: 2px;
+  margin: 15px;
+}
+
+#about {
+  font-size: 13.5px;
 }
 
 .neticents {
@@ -195,6 +207,7 @@ section {
 @media (max-width: 768px) {
   #home {
     padding: 100px 35px 120px;
+    height: 500px;
   }
 
   #home h2 {
@@ -202,7 +215,8 @@ section {
   }
 
   #home h2 span {
-    font-size: 31px;
+    font-size: 32px;
+    font-weight: bolder;
     -webkit-text-fill-color: black;
     -webkit-text-stroke-width: 0.3px;
     color: var(--primary-bg-color);
@@ -317,15 +331,19 @@ section {
 
 .navbar a.nav-link {
   font-family: var(--font-inter);
-  font-size: 12px;
+  font-size: 13px;
   margin: 0 2px !important;
   padding: 3px 0px;
   text-decoration: none;
   display: inline-block;
+  line-height: 14px;
+  padding: 2.5px;
 }
 
 .navbar a.nav-link:hover {
   color: var(--text-color) !important;
+  background-color: black;
+  transition: background-color 0.1s ease;
 }
 
 .navbar-toggler-icon {

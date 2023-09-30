@@ -1,3 +1,5 @@
+'use strict';
+
 // check if an element is in the viewport
 const isInViewport = (element) => {
   const rect = element.getBoundingClientRect();
@@ -21,6 +23,28 @@ const handleScrollAnimations = () => {
   });
 };
 
-window.addEventListener('scroll', handleScrollAnimations);
+// animation for link boxes
+const animateResourceBox = (element, delay) => {
+  setTimeout(() => {
+    element.classList.add('visible');
+    element.style.transform = 'translateY(0)';
+    element.style.opacity = '1';
+  }, delay);
+};
+const handleScrollAnimations2 = () => {
+  const elementsToAnimate = document.querySelectorAll('.animate-on-scroll2');
+  const animationDelay = 100;
 
+  elementsToAnimate.forEach((element, index) => {
+    if (isInViewport(element)) {
+      const delay = index * animationDelay;
+      animateResourceBox(element, delay);
+    }
+  });
+};
+
+window.addEventListener('scroll', handleScrollAnimations);
 document.addEventListener('DOMContentLoaded', handleScrollAnimations);
+
+window.addEventListener('scroll', handleScrollAnimations2);
+document.addEventListener('DOMContentLoaded', handleScrollAnimations2);
