@@ -196,7 +196,7 @@ const calculateTax = function () {
 	let sssContribution = 0;
 	let mpfContribution = 0;
 	let gsisContribution = 0;
-	let pagibigContribution = 100;
+	let pagibigContribution = 200;
 	let philhealthContribution = computePhilHealth(monthlySalary);
 
 	if (sector === "private") {
