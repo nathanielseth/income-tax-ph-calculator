@@ -14,7 +14,7 @@ Built with
 
 ## Getting Started
 
-Start calculating now by visiting https://nathanielseth.github.io/Neti-Cents
+Start calculating now by visiting https://nathanielseth.github.io/income-tax-ph-calculator
 
 
 ## Formulas
